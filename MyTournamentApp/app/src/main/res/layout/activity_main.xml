@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3CBC80">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#000"
+        android:textColor="#3CBC80"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/Fixture"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="35dp"
+            android:onClick="IrAFixture"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/TablaDeGoleadores"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/TablaDeGoleadores"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="35dp"
+            android:onClick="IrATablaGoleadores"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Inicio"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/Inicio"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:onClick="IrANoticias"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/TablaDePosiciones"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="35dp"
+            android:onClick="IrATablaPosiciones"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Inicio"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/Administracion"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="35dp"
+            android:onClick="IrAAdministracion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TablaDePosiciones"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ESPACIO DE TRABAJO -->
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:background="#212423"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/footer"
+        android:gravity="center" >
+
+        <FrameLayout
+            android:id="@+id/Frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+</RelativeLayout>

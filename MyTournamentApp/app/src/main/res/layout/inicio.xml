@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#212423">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sansposterbold"
+            android:layout_gravity="center"
+            android:text="My Tournament"
+            android:textColor="#FFF"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/subheader"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:background="#212423"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/Noticias"
+            android:layout_width="210dp"
+            android:layout_height="38dp"
+            android:layout_gravity="top"
+            android:background="#000"
+            android:text="Noticias"
+            android:fontFamily="@font/quino"
+            android:textColor="#3CBC80"
+            android:textSize="18dp"
+            />
+        <Button
+            android:id="@+id/Buscar"
+            android:layout_width="210dp"
+            android:layout_height="38dp"
+            android:layout_gravity="top"
+            android:background="#000"
+            android:fontFamily="@font/quino"
+            android:text="Buscar"
+            android:textColor="#FFF"
+            android:textSize="18dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/subsubheader"
+        android:layout_width="420dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subheader"
+        android:background="#212423"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        tools:ignore="ExtraText">
+
+        <TextView
+            android:id="@+id/ren"
+            android:layout_width="208dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top"
+            android:background="#3CBC80"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/subsubheader"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/Carga"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/cargando" />
+
+        <EditText
+            android:id="@+id/Buscador"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Buscar torneos"
+            android:visibility="gone"
+            android:textColor="#000"
+            android:textColorHint="#787878"
+            android:background="@drawable/input"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/SeguirTorneos"
+            android:layout_width="300dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Ir a seguir torneos"
+            android:background="#F3F3F3"
+            android:fontFamily="@font/jai"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+
+        <ListView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</RelativeLayout>

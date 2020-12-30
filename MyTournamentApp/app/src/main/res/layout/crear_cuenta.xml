@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="440dp"
+    android:background="#212423"
+    android:orientation="vertical"
+    android:layout_gravity="bottom">
+
+    <FrameLayout
+        android:id="@+id/inputs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/footer"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Nombre de usuario"
+                android:inputType="textPersonName"
+                android:textColor="#000"
+                android:textColorHint="#787878" />
+
+            <EditText
+                android:id="@+id/correo"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Correo electronico"
+                android:inputType="textEmailAddress"
+                android:textColor="#000"
+                android:textColorHint="#787878" />
+            <EditText
+                android:id="@+id/FechaNacimiento"
+                android:hint="Fecha de Nacimiento"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:maxLines="1" />
+
+            <EditText
+                android:id="@+id/contra"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textColorHint="#787878" />
+
+            <EditText
+                android:id="@+id/confContra"
+                android:layout_width="360dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/input"
+                android:ems="20"
+                android:gravity="center"
+                android:hint="Confirmar contraseña"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textColorHint="#787878" />
+            <TextView
+                android:id="@+id/Texto"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#B10000"
+                android:background="@drawable/borde_fondo_manteca"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="#212423"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#3CBC80"
+            android:ems="12"
+            android:text="Crear cuenta"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

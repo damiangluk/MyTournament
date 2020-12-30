@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/general"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/footer"
+    android:layout_below="@id/header"
+    android:gravity="center_horizontal"
+    android:background="#212423">
+
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="#000"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/Fixture"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:fontFamily="@font/sansposterbold"
+            android:text="Fixture"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="#FFF"
+            android:layout_marginLeft="10dp"
+            tools:ignore="HardcodedText,SpUsage" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/Carga"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cargando"
+        />
+    <Spinner
+        android:id="@+id/Jornadas"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:spinnerMode="dropdown"
+        android:gravity="center"
+        android:contextClickable="true"
+        tools:ignore="RtlCompat" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:background="#212423">
+
+        <Button
+            android:id="@+id/SeguirTorneos"
+            android:layout_width="300dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Ir a seguir torneos"
+            android:background="#F3F3F3"
+            android:fontFamily="@font/jai"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+
+        <ListView
+            android:layout_marginTop="20dp"
+            android:id="@+id/ListaPartidos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabla"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:stretchColumns="1"
+    android:layout_marginTop="1dp">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/pos1"
+            android:layout_width="41dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:padding="3dip"
+            android:background="#3CBC80"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/jug1"
+            android:layout_width="151dp"
+            android:layout_height="40dp"
+            android:gravity="left"
+            android:padding="7dip"
+            android:background="@drawable/celda"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/eqp1"
+            android:layout_width="152dp"
+            android:layout_height="40dp"
+            android:background="@drawable/celda"
+            android:padding="7dip"
+            android:gravity="left"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/Goles"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:background="@drawable/celda"
+            android:gravity="center"
+            android:padding="3dip"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+    </TableRow>
+
+</TableLayout>

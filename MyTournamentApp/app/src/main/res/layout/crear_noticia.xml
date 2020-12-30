@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:background="#212423">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp">
+
+                <EditText
+                    android:id="@+id/Titulo"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#00000000"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:hint="Ingrese el titulo"
+                    android:textColor="#FFF"
+                    android:textColorHint="#737373"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/Destacada"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/Titulo"
+                    app:layout_constraintStart_toEndOf="@+id/Titulo"
+                    app:layout_constraintTop_toTopOf="@id/Titulo"
+                    app:srcCompat="@drawable/estrella" />
+
+                <ImageView
+                    android:id="@+id/Foto"
+                    android:layout_width="410dp"
+                    android:layout_height="410dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Titulo"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/noticia_default" />
+
+                <Button
+                    android:id="@+id/CambiarFoto"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/editar"
+                    app:layout_constraintBottom_toBottomOf="@+id/Foto"
+                    app:layout_constraintEnd_toEndOf="@+id/Foto" />
+
+                <EditText
+                    android:id="@+id/Descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#00000000"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="center"
+                    android:hint="Ingrese una descripcion"
+                    android:textColor="#A3A3A3"
+                    android:textColorHint="#737373"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Foto" />
+
+                <TextView
+                    android:id="@+id/TXT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:text="Destacar"
+                    android:textColor="#FFF"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Descripcion" />
+
+                <Switch
+                    android:id="@+id/Destacar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/TXT"
+                    app:layout_constraintStart_toEndOf="@+id/TXT" />
+
+                <Button
+                    android:id="@+id/Borrar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="#FF1744"
+                    android:text="Borrar"
+                    app:layout_constraintEnd_toStartOf="@+id/Publicar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TXT" />
+                <Button
+                    android:id="@+id/Publicar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="#3CBC80"
+                    android:text="publicar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TXT" />
+
+                <Button
+                    android:id="@+id/Cancelar"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="#FF1744"
+                    android:text="Cancelar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Publicar"
+                    app:layout_constraintTop_toBottomOf="@+id/TXT" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

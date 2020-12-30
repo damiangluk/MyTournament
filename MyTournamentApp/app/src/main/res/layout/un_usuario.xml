@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212423"
+    android:orientation="vertical">
+    <!-- HEADER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#000">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="@font/sansposterbold"
+            android:text="Perfil"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/Volver"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/Volver"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:background="@drawable/flechita_volver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/Configuracion"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/configuracion"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/Nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/fondo_barra_usuario"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="25dp"
+                    android:text="Nombre usuario:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Torneos"
+                    tools:ignore="RtlHardcoded" />
+
+                <TextView
+                    android:id="@+id/Edad"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/fondo_barra_usuario"
+                    android:layout_marginTop="2dp"
+                    android:text="Edad:"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:paddingLeft="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Contrasenia" />
+
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/fondo_barra_usuario"
+                    android:layout_marginTop="2dp"
+                    android:text="Email:"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:paddingLeft="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Edad" />
+
+                <TextView
+                    android:id="@+id/Contrasenia"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/fondo_barra_usuario"
+                    android:layout_marginTop="2dp"
+                    android:text="Contrasenia:"
+                    android:paddingLeft="25dp"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Nombre" />
+
+                <TextView
+                    android:id="@+id/GolesEnTorneo"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/fondo_barra_usuario"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="25dp"
+                    android:text="Goles en torneo:"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Email"
+                    android:visibility="gone"/>
+
+                <Spinner
+                    android:id="@+id/Torneos"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="30dp"
+                    android:spinnerMode="dropdown"
+                    android:gravity="center"
+                    android:contextClickable="true"
+                    tools:ignore="RtlCompat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/foto" />
+
+                <TextView
+                    android:id="@+id/TXT1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/jai"
+                    android:text="Participando en:"
+                    android:textColor="#FFF"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/ListaTorneosParticipados"
+                    app:layout_constraintTop_toBottomOf="@+id/GolesEnTorneo" />
+
+                <ListView
+                    android:id="@+id/ListaTorneosParticipados"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/TXT1" />
+
+                <TextView
+                    android:id="@+id/TXT2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/jai"
+                    android:text="Torneos seguidos"
+                    android:textColor="#FFF"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@+id/ListaTorneosSeguidos"
+                    app:layout_constraintTop_toBottomOf="@+id/ListaTorneosParticipados" />
+
+                <ListView
+                    android:id="@+id/ListaTorneosSeguidos"
+                    android:layout_width="380dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TXT2"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>

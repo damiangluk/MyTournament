@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212423"
+    android:orientation="vertical">
+    <!-- HEADER -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#000">
+
+        <Button
+            android:id="@+id/Volver"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:background="@drawable/flechita_volver"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/foto"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/icono_torneo" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/NombreTorneo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="18dp"
+                        android:text="Nombre torneo"
+                        android:textColor="#FFF"
+                        android:textSize="26sp" />
+
+                    <TextView
+                        android:id="@+id/Seguidores"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="0"
+                        android:textColor="#FFF"
+                        android:gravity="center"
+                        android:textSize="24sp" />
+                    <TextView
+                        android:id="@+id/Palabra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="Seguidores"
+                        android:textColor="#FFF"
+                        android:gravity="center"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ListaDeEspera"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="40dp"
+                android:text="Lista de espera"
+                android:fontFamily="@font/sansposterbold"
+                android:textColor="#000"
+                android:paddingLeft="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_torneo"
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/Equipos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:text="Equipos"
+                android:fontFamily="@font/sansposterbold"
+                android:textColor="#000"
+                android:paddingStart="40dp"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_torneo"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+
+            <Button
+                android:id="@+id/Partidos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/sansposterbold"
+                android:background="@drawable/fondo_barra_torneo"
+                android:gravity="center_vertical"
+                android:paddingLeft="40dp"
+                android:text="Partidos"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/Noticias"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/sansposterbold"
+                android:text="Noticias"
+                android:paddingLeft="40dp"
+                android:textColor="#000"
+                android:gravity="center_vertical"
+                android:background="@drawable/fondo_barra_torneo"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

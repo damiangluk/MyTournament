@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/general"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@id/footer"
+    android:layout_below="@id/header"
+    android:gravity="center_horizontal"
+    android:background="#212423">
+
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/background_dark"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/Fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tabla de posiciones"
+            android:fontFamily="@font/sansposterbold"
+            android:textColor="@android:color/background_light"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            tools:ignore="HardcodedText,SpUsage" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/Carga"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/cargando"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/posicion"
+            android:layout_marginStart="2dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="Pos"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/Equipo"
+            android:layout_width="215dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:padding="7dip"
+            android:text="Equipo"
+            android:background="@drawable/celda_principal"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/Puntos"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="P"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/Goles"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="G"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/PartidosJugados"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:background="@drawable/celda_principal"
+            android:text="PJ"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/ListaDePosiciones"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/SeguirTorneos"
+            android:layout_width="300dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="20dp"
+            android:text="Ir a seguir torneos"
+            android:background="#F3F3F3"
+            android:fontFamily="@font/jai"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

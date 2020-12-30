@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="40dp"
+    android:background="@drawable/borde_grisclaro_fondo_gris"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/renglon"
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:background="#818181"/>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/icono_equipo"/>
+    <TextView
+        android:id="@+id/Nombre"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textColor="#FFF"
+        android:textSize="16dp"
+        android:layout_marginLeft="10dp"/>
+    <Button
+        android:id="@+id/Destacada"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/estrella_equipos"
+        android:layout_marginLeft="5dp"/>
+
+</LinearLayout>
+</LinearLayout>
