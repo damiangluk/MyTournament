@@ -21,6 +21,6 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:textColor="#FFF"
-    android:background="#3CBC80"
+    android:background="@drawable/bordes_fondo_verde"
     android:gravity="center"
     />
