@@ -78,11 +78,11 @@ public class AdaptadorAdminPartidos extends ArrayAdapter<Partido> {
         if (P.GolesLocal == -1)
         {
             Estado.setText("No jugado");
-            Fondo.setBackgroundColor(Color.rgb(232,108,108));
+            Fondo.setBackgroundColor(Color.rgb(108,232,108));
         }else
         {
             Estado.setText("Jugado");
-            Fondo.setBackgroundColor(Color.rgb(108,232,108));
+            Fondo.setBackgroundColor(Color.rgb(232,108,108));
             Eliminar.setVisibility(View.GONE);
         }
         Jornada.setText("Jornada "+P.Jornada);

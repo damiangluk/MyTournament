@@ -107,6 +107,8 @@ public class CrearNoticia extends Fragment {
             @Override
             public void onClick(View view) {
                 Foto.setImageResource(R.drawable.noticia_default);
+                Titulo.setText("");
+                Descripcion.setText("");
             }
         });
         return VistaADevolver;

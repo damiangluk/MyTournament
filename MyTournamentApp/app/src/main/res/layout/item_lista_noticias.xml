@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center_vertical"
         android:background="#212423"
         android:orientation="horizontal">
 
@@ -21,13 +21,14 @@
             android:id="@+id/Titulo"
             android:layout_width="348dp"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-black"
+            android:fontFamily="@font/bevan"
             android:layout_marginStart="10dp"
             android:gravity="left"
             android:layout_gravity="center_vertical"
             android:text="Titulo"
-            android:textColor="#FFF"
-            android:textSize="24sp" />
+            android:lineHeight="22dp"
+            android:textColor="#B5B5B5"
+            android:textSize="22sp" />
         <ImageView
             android:id="@+id/Destacada"
             android:layout_width="40dp"
@@ -46,13 +47,13 @@
         android:id="@+id/Descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="serif"
+        android:fontFamily="@font/jai"
         android:layout_marginTop="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:gravity="left"
         android:text="Descripcion"
-        android:textColor="#FFF"
+        android:textColor="#7A7A7A"
         android:textSize="14sp" />
 
     <TextView
