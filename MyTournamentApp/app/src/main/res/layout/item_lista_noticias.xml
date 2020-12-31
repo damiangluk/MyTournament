@@ -27,7 +27,7 @@
             android:layout_gravity="center_vertical"
             android:text="Titulo"
             android:lineHeight="22dp"
-            android:textColor="#B5B5B5"
+            android:textColor="#FFFFFF"
             android:textSize="22sp" />
         <ImageView
             android:id="@+id/Destacada"

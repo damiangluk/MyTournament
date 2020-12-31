@@ -32,7 +32,7 @@ namespace OurTournamentAPI.Controllers
         [Route("api/GetTorneosPorNombre/Nombre/{Nombre}/Usuario/{IDUsuario}")]
         public IHttpActionResult ObtenerTorneosPorNombre(String Nombre,int IDUsuario)
         {
-            List<Models.TorneoSeguido> T = new List<Models.TorneoSeguido>();
+            List<Models.TorneoParticipacion> T = new List<Models.TorneoParticipacion>();
             QQSM Conexion = new QQSM();
             T = Conexion.TraerTorneosPorNombre(Nombre,IDUsuario);
             if (T != null)

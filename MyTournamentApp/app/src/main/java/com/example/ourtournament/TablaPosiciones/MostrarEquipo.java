@@ -2,18 +2,12 @@ package com.example.ourtournament.TablaPosiciones;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.media.audiofx.DynamicsProcessing;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,32 +16,16 @@ import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
-import com.example.ourtournament.Objetos.GolesXUsuario;
-import com.example.ourtournament.Objetos.Partido;
-import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.TareaAsincronica;
-import com.example.ourtournament.Objetos.TorneoSeguido;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MostrarEquipo extends Fragment {
     TextView Nombre,Puntos, PJugados, GolesAFavor, GolesEnContra,CantJug;

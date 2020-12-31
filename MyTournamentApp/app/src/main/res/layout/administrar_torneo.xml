@@ -38,7 +38,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -47,46 +47,79 @@
                     android:id="@+id/foto"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
+                    android:layout_marginStart="40dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="40dp"
-                    android:src="@drawable/icono_torneo" />
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:src="@drawable/icono_torneo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/NombreTorneo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Nombre torneo"
+                    android:textColor="#FFF"
+                    android:textSize="26sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/foto"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/NombreTorneo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:layout_marginTop="18dp"
-                        android:text="Nombre torneo"
-                        android:textColor="#FFF"
-                        android:textSize="26sp" />
+                <TextView
+                    android:id="@+id/Seguidores"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#FFF"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/foto"
+                    app:layout_constraintTop_toBottomOf="@+id/NombreTorneo" />
 
-                    <TextView
-                        android:id="@+id/Seguidores"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="0"
-                        android:textColor="#FFF"
-                        android:gravity="center"
-                        android:textSize="24sp" />
-                    <TextView
-                        android:id="@+id/Palabra"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="20dp"
-                        android:text="Seguidores"
-                        android:textColor="#FFF"
-                        android:gravity="center"
-                        android:textSize="16sp" />
-                </LinearLayout>
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/Palabra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Seguidores"
+                    android:textColor="#FFF"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/Seguidores"
+                    app:layout_constraintStart_toStartOf="@+id/Seguidores"
+                    app:layout_constraintTop_toBottomOf="@+id/Seguidores" />
+
+                <TextView
+                    android:id="@+id/CantNoticias"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#FFF"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/Seguidores"
+                    app:layout_constraintTop_toBottomOf="@+id/NombreTorneo" />
+
+                <TextView
+                    android:id="@+id/Palabra2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:text="Noticias"
+                    android:textColor="#FFF"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/CantNoticias"
+                    app:layout_constraintStart_toStartOf="@+id/CantNoticias"
+                    app:layout_constraintTop_toBottomOf="@+id/CantNoticias" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/ListaDeEspera"

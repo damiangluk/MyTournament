@@ -6,15 +6,15 @@ public class GolesXUsuario {
     public int IdUsuario;
     public String NombreUsuario;
     public int Cantgoles;
-    public String Nombreequipo;
+    public int IDEquipo1;
 
-    public GolesXUsuario(int iDPartido, int iDUsuario, String nombre, int cantGoles,String nombreequipo)
+    public GolesXUsuario(int iDPartido, int iDUsuario, String nombre, int cantGoles,int idequipo)
     {
         IdPartido = iDPartido;
         IdUsuario = iDUsuario;
         NombreUsuario = nombre;
         Cantgoles = cantGoles;
-        Nombreequipo = nombreequipo;
+        IDEquipo1 = idequipo;
     }
     public GolesXUsuario()
     {

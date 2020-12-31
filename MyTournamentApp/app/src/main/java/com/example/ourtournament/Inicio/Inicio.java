@@ -26,19 +26,14 @@ import com.example.ourtournament.Objetos.Noticia;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Torneo;
-import com.example.ourtournament.Objetos.TorneoSeguido;
+import com.example.ourtournament.Objetos.TorneoParticipacion;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class Inicio extends Fragment {
@@ -194,10 +189,10 @@ public class Inicio extends Fragment {
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
     }
-    private class LLenarListaTorneos extends AsyncTask<Void,Void,ArrayList<TorneoSeguido>> {
+    private class LLenarListaTorneos extends AsyncTask<Void,Void,ArrayList<TorneoParticipacion>> {
         @Override
-        protected ArrayList<TorneoSeguido> doInBackground(Void... voids) {
-            ArrayList<TorneoSeguido> listaTorneos = new ArrayList<>();
+        protected ArrayList<TorneoParticipacion> doInBackground(Void... voids) {
+            ArrayList<TorneoParticipacion> listaTorneos = new ArrayList<>();
             String Ruta = "GetTorneosPorNombre/Nombre/" + NombreABuscar+"/Usuario/"+U.IdUsuario;
             TareaAsincronica Tarea = new TareaAsincronica();
             String Respuesta = Tarea.RealizarTarea(Ruta);
@@ -206,13 +201,13 @@ public class Inicio extends Fragment {
 
             for (int i = 0; i < VecTorneos.size(); i++) {
                 JsonElement Elemento = VecTorneos.get(i);
-                TorneoSeguido TS = g.fromJson(Elemento, TorneoSeguido.class);
+                TorneoParticipacion TS = g.fromJson(Elemento, TorneoParticipacion.class);
                 listaTorneos.add(TS);
             }
             return listaTorneos;
         }
 
-        protected void onPostExecute(ArrayList<TorneoSeguido> lista) {
+        protected void onPostExecute(ArrayList<TorneoParticipacion> lista) {
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,P);
             listatorneos.setVisibility(View.VISIBLE);
             listatorneos.setAdapter(Adaptador);

@@ -27,7 +27,10 @@ import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -38,7 +41,7 @@ public class AdministrarTorneo extends Fragment{
     Preferencias P;
     ImageView Perfil;
     Button Volver, ListaEspera,Equipos,Partidos,Noticias;
-    TextView NombreTorneo,Seguidores;
+    TextView NombreTorneo,Seguidores,CantNoticias;
     View VistaADevolver = null;
 
     @Override
@@ -54,6 +57,7 @@ public class AdministrarTorneo extends Fragment{
             Partidos = VistaADevolver.findViewById(R.id.Partidos);
             Noticias = VistaADevolver.findViewById(R.id.Noticias);
             Seguidores = VistaADevolver.findViewById(R.id.Seguidores);
+            CantNoticias = VistaADevolver.findViewById(R.id.CantNoticias);
             Principal = (MainActivity) getActivity();
             P = Principal.CargarSharedPreferences();
         }
@@ -114,7 +118,7 @@ public class AdministrarTorneo extends Fragment{
 
         });
 
-        TraerSeguidoresPorTorneo Tarea = new TraerSeguidoresPorTorneo();
+        TraerInfoDeTorneo Tarea = new TraerInfoDeTorneo();
         Tarea.execute();
         return VistaADevolver;
     }
@@ -123,16 +127,20 @@ public class AdministrarTorneo extends Fragment{
         T = torneoElegido;
     }
 
-    private class TraerSeguidoresPorTorneo extends AsyncTask<Void,Void, String> {
+    private class TraerInfoDeTorneo extends AsyncTask<Void,Void, JsonArray> {
         @Override
-        protected String doInBackground(Void... voids) {
+        protected JsonArray doInBackground(Void... voids) {
             String Ruta = "GetSeguidoresPorTorneo/Torneo/"+T.IDTorneo;
             TareaAsincronica Tarea = new TareaAsincronica();
-            return Tarea.RealizarTarea(Ruta);
+            String Respuesta = Tarea.RealizarTarea(Ruta);
+            Gson g = new Gson();
+            JsonArray VecInfo = g.fromJson(Respuesta, JsonArray.class);
+            return VecInfo;
         }
-        protected void onPostExecute(String CantSeguidores)
+        protected void onPostExecute(JsonArray Info)
         {
-            Seguidores.setText(String.valueOf(CantSeguidores));
+            Seguidores.setText(String.valueOf(Info.get(0)));
+            CantNoticias.setText(String.valueOf(Info.get(1)));
         }
     }
 }

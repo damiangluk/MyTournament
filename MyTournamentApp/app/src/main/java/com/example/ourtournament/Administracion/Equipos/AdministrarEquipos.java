@@ -55,30 +55,22 @@ public class AdministrarEquipos extends Fragment {
         return VistaADevolver;
     }
 
-    private class TraerEquiposPorTorneo extends AsyncTask<Void,Void, ArrayList<Equipo>>
-    {
+    private class TraerEquiposPorTorneo extends AsyncTask<Integer,Void,ArrayList<Equipo>> {
         @Override
-        protected ArrayList<Equipo> doInBackground(Void... voids) {
-            ArrayList<Equipo> ListaEquipos= new ArrayList<>();
-            try {
-                String Ruta = "GetEquiposXTorneo/Torneo/"+T.IDTorneo;
-                TareaAsincronica Tarea = new TareaAsincronica();
-                String Respuesta = Tarea.RealizarTarea(Ruta);
-                Gson g = new Gson();
-                JsonArray VecEquipos = g.fromJson(Respuesta, JsonArray.class);
-
-                for (int i = 0; i < VecEquipos.size(); i++)
-                {
-                    JsonElement Elemento = VecEquipos.get(i);
-                    Gson gson = new Gson();
-                    Equipo E = gson.fromJson(Elemento, Equipo.class);
-                    ListaEquipos.add(E);
-                }
-            } catch (Exception ErrorOcurrido) {
-
-                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+        protected ArrayList<Equipo> doInBackground(Integer... voids) {
+            ArrayList<Equipo> VecPosiciones = new ArrayList<>();
+            String Ruta = "GetPosiciones/Torneo/" + T.IDTorneo;
+            TareaAsincronica Tarea = new TareaAsincronica();
+            String Respuesta = Tarea.RealizarTarea(Ruta);
+            Gson g = new Gson();
+            JsonArray VecPos = g.fromJson(Respuesta, JsonArray.class);
+            for (int i = 0; i < VecPos.size(); i++) {
+                JsonElement Elemento = VecPos.get(i);
+                Gson gson = new Gson();
+                Equipo E = gson.fromJson(Elemento, Equipo.class);
+                VecPosiciones.add(E);
             }
-            return ListaEquipos;
+            return VecPosiciones;
         }
         protected void onPostExecute(ArrayList<Equipo> lista)
         {

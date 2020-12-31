@@ -9,29 +9,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 
-import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
-import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -63,7 +55,6 @@ public class MostrarPartido extends Fragment {
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         int horas = calendar.get(Calendar.HOUR_OF_DAY);
         int minutos = calendar.get(Calendar.MINUTE);
-
         if (Par.GolesLocal == -1)
         {
             jugado.setText("El partido se jugara el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
@@ -141,6 +132,7 @@ public class MostrarPartido extends Fragment {
                 Gson gson = new Gson();
                 GolesXUsuario G = gson.fromJson(Elemento, GolesXUsuario.class);
                 listaGoles.add(G);
+                Log.d("conexion","Traje: "+G.NombreUsuario+ "Con: "+G.Cantgoles+"su equipo es: "+G.IDEquipo1);
             }
             return listaGoles;
         }
@@ -148,11 +140,13 @@ public class MostrarPartido extends Fragment {
         {
             for(int i=0;i<lista.size();i++)
             {
-                if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoLocal))
+                if (lista.get(i).IDEquipo1 == Par.IDEquipoLocal)
                 {
+                    Log.d("conexion","Entre a local");
                     Goles1.add(lista.get(i));
-                }else if (lista.get(i).Nombreequipo.equals(Par.NombreEquipoVisitante))
+                }else if (lista.get(i).IDEquipo1 == Par.IDEquipoVisitante)
                 {
+                    Log.d("conexion","Entre a visitante");
                     Goles2.add(lista.get(i));
                 }
             }

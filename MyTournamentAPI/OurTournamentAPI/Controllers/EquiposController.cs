@@ -61,23 +61,6 @@ namespace OurTournamentAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("api/GetEquiposXTorneo/Torneo/{IDTorneo}")]
-        public IHttpActionResult TraerEquiposXTorneo(int IDTorneo)
-        {
-            QQSM Conexion = new QQSM();
-            List<Models.Equipo> Lista = Conexion.TraerEquiposPorTorneo(IDTorneo);
-            if (Lista != null)
-            {
-                return Ok(Lista);
-            }
-            else
-            {
-                return NotFound();
-            }
-
-        }
-
         /*
         [System.Web.Http.Route("api/InsertEquipos")]
         [System.Web.Http.HttpPost]

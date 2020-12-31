@@ -11,21 +11,21 @@ namespace OurTournamentAPI.Models
         private int IDUsuario;
         private String Nombre;
         private int CantGoles;
-        private String NombreEquipo;
+        private int IDEquipo;
 
         public int IdPartido { get => IDPartido; set => IDPartido = value; }
         public int IdUsuario { get => IDUsuario; set => IDUsuario = value; }
         public string NombreUsuario { get => Nombre; set => Nombre = value; }
         public int Cantgoles { get => CantGoles; set => CantGoles = value; }
-        public string Nombreequipo { get => NombreEquipo; set => NombreEquipo = value; }
+        public int IDEquipo1 { get => IDEquipo; set => IDEquipo = value; }
 
-        public GolesXUsuario(int iDPartido, int iDUsuario, String nombre, int cantGoles,String nombreequipo)
+        public GolesXUsuario(int iDPartido, int iDUsuario, String nombre, int cantGoles,int idequipo)
         {
             IDPartido = iDPartido;
             IDUsuario = iDUsuario;
             Nombre = nombre;
             CantGoles = cantGoles;
-            NombreEquipo = nombreequipo;
+            IDEquipo = idequipo;
         }
 
         public GolesXUsuario()

@@ -34,23 +34,23 @@ namespace OurTournamentAPI
             return Lector;
         }
 
-        public List<Models.TorneoSeguido> TraerTorneosPorNombre(String Nombre,int IDUsuario)
+        public List<Models.TorneoParticipacion> TraerTorneosPorNombre(String Nombre,int IDUsuario)
         {
             Dictionary<String, Object> P = new Dictionary<string, object>();
             P.Add("@Nombre", Nombre);
             P.Add("@IDUsuario", IDUsuario);
             SqlDataReader Lector = HacerStoredProcedured("TraerTorneosPorNombre", P);
 
-            Models.TorneoSeguido UnTorneo;
-            List<Models.TorneoSeguido> ListaTorneos = new List<Models.TorneoSeguido>();
+            Models.TorneoParticipacion UnTorneo;
+            List<Models.TorneoParticipacion> ListaTorneos = new List<Models.TorneoParticipacion>();
             while (Lector.Read())
             {
                 int idtorneo = Convert.ToInt32(Lector["IDTorneo"]);
                 string nombretorneo = Lector["NombreTorneo"].ToString();
                 string contraseniadeadministrador = Lector["ContraseniaDeAdministrador"].ToString();
                 string linkparaunirse = Lector["LinkParaUnirse"].ToString();
-                Boolean Siguiendo = Convert.ToBoolean(Lector["Siguiendo"]);
-                UnTorneo = new Models.TorneoSeguido(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse,Siguiendo);
+                int IDParticipacion = Convert.ToInt32(Lector["IDParticipacion"]);
+                UnTorneo = new Models.TorneoParticipacion(idtorneo, nombretorneo, contraseniadeadministrador, linkparaunirse, IDParticipacion);
                 ListaTorneos.Add(UnTorneo);
             }
             Desconectar(con);
@@ -263,9 +263,9 @@ namespace OurTournamentAPI
                 int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
                 String NombreUsuario = Lector["NombreDeUsuario"].ToString();
                 int CantidadGoles = Convert.ToInt32(Lector["CantidadGoles"]);
-                String NombreEquipo = Lector["NombreEquipo"].ToString();
+                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
 
-                Gol = new Models.GolesXUsuario(IDpartido, IDUsuario, NombreUsuario, CantidadGoles, NombreEquipo);
+                Gol = new Models.GolesXUsuario(IDpartido, IDUsuario, NombreUsuario, CantidadGoles, IDEquipo);
                 Goles.Add(Gol);
             }
             Desconectar(con);
@@ -481,45 +481,20 @@ namespace OurTournamentAPI
             return 0;
         }
 
-        public List<Models.Equipo> TraerEquiposPorTorneo(int IDTorneo)
+        public List<int> TraerSeguidoresPorTorneo(int IDTorneo)
         {
             Dictionary<String, Object> P = new Dictionary<string, object>();
             P.Add("@IDTorneo", IDTorneo);
-            SqlDataReader Lector = HacerStoredProcedured("TraerEquiposPorTorneo", P);
+            SqlDataReader Lector = HacerStoredProcedured("[TraerInfoDeTorneo]", P);
 
-            List<Models.Equipo> ListaEquipos = new List<Models.Equipo>();
-            Models.Equipo UnEquipo;
-            while (Lector.Read())
-            {
-                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
-                string Nombre = Convert.ToString(Lector["NombreEquipo"]);
-                int PartidosJugados = Convert.ToInt32(Lector["PartidosJugados"]);
-                int Puntos = Convert.ToInt32(Lector["Puntos"]);
-                int GolesAFavor = Convert.ToInt32(Lector["GolesAFavor"]);
-                int GolesEnContra = Convert.ToInt32(Lector["GolesEnContra"]);
-                int IDtorneo = Convert.ToInt32(Lector["IDTorneo"]);
-
-                UnEquipo = new Models.Equipo(IDEquipo, Nombre, PartidosJugados, Puntos, GolesAFavor, GolesEnContra,IDtorneo);
-                ListaEquipos.Add(UnEquipo);
-            }
-            Desconectar(con);
-            return ListaEquipos;
-        }
-
-
-        public int TraerSeguidoresPorTorneo(int IDTorneo)
-        {
-            Dictionary<String, Object> P = new Dictionary<string, object>();
-            P.Add("@IDTorneo", IDTorneo);
-            SqlDataReader Lector = HacerStoredProcedured("TraerSeguidoresPorTorneo", P);
-
-            int IDEquipo = 0;
+            List<int> ListaInfo = new List<int>();
             if (Lector.Read())
             {
-                IDEquipo = Convert.ToInt32(Lector["Seguidores"]);
+                ListaInfo.Add(Convert.ToInt32(Lector["Seguidores"]));
+                ListaInfo.Add(Convert.ToInt32(Lector["Noticias"]));
             }
             Desconectar(con);
-            return IDEquipo;
+            return ListaInfo;
         }
 
         public List<Models.Usuario> TraerListaDeEspera(int IDTorneo)

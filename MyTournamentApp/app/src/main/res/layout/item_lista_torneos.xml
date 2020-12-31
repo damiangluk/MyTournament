@@ -36,13 +36,13 @@
 
             <TextView
                 android:id="@+id/Torneo"
-                android:layout_width="200dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
                 android:gravity="left"
                 android:text="Nombre"
                 android:textColor="#FFF"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintStart_toEndOf="@+id/PerfilTorneo"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -57,7 +57,7 @@
                 android:text="Seguir"
                 android:textSize="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/list"
-                app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
+                app:layout_constraintEnd_toStartOf="@+id/Participar"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -70,6 +70,18 @@
                 android:textSize="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/Participar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/participar_torneo"
+                android:gravity="center"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/list"
+                app:layout_constraintEnd_toEndOf="@+id/BTNSeguir"
+                app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ListView
