@@ -208,7 +208,7 @@ public class Inicio extends Fragment {
         }
 
         protected void onPostExecute(ArrayList<TorneoParticipacion> lista) {
-            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,P);
+            AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,P,Principal);
             listatorneos.setVisibility(View.VISIBLE);
             listatorneos.setAdapter(Adaptador);
             Carga.setVisibility(View.GONE);

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
@@ -50,12 +51,14 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
     private Preferencias _P;
     private Usuario U;
     private Boolean Participando = false;
+    private MainActivity Principal;
 
-    public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<TorneoParticipacion> ListaTorneos, Preferencias P) {
+    public AdaptadorListaTorneos(Context contexto, int Resource, ArrayList<TorneoParticipacion> ListaTorneos, Preferencias P,MainActivity principal) {
         super(contexto, Resource, ListaTorneos);
         this._ListaTorneos = ListaTorneos;
         this._Contexto = contexto;
         this._Resource = Resource;
+        this.Principal = principal;
         String usuario =  P.ObtenerString("InformacionUsuario","");
         if (usuario.length()>1)
         {
@@ -88,13 +91,12 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
         }
 
         final ListView lista;
-        final Button Seguir,VerEquipos,Participar;
+        final Button Seguir,Participar;
         final CircleImageView FotoPerfil;
         TextView NombreTorneo;
 
         FotoPerfil = VistaADevolver.findViewById(R.id.PerfilTorneo);
         NombreTorneo = VistaADevolver.findViewById(R.id.Torneo);
-        VerEquipos = VistaADevolver.findViewById(R.id.VerEquipos);
         Participar = VistaADevolver.findViewById(R.id.Participar);
 
         Seguir = VistaADevolver.findViewById(R.id.BTNSeguir);
@@ -105,7 +107,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Siguiendo");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
-        } else if(T.IDParticipacion1 == 2){
+        } else if(T.IDParticipacion1 > 1){
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Participando");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
@@ -132,35 +134,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
                 });
         NombreTorneo.setText(T.NombreTorneo);
 
-        if (!_ListaAbiertos.get(pos)) {
-            Animacion(VerEquipos, "rotation", 0, 0, 0);
-            lista.setVisibility(View.GONE);
-        } else {
-            Animacion(VerEquipos, "rotation", 0, -180, 0);
-            Lista = lista;
-            _IDTorneo = T.IDTorneo;
-            TraerEquipos Tarea = new TraerEquipos();
-            Tarea.execute();
-        }
-
-        VerEquipos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (!_ListaAbiertos.get(pos))
-                {
-                    for (int i=0;i<_ListaAbiertos.size();i++)
-                    {
-                        _ListaAbiertos.set(i,false);
-                    }
-                    _ListaAbiertos.set(pos,true);
-                }else
-                {
-                    _ListaAbiertos.set(pos,false);
-                }
-                notifyDataSetChanged();
-            }
-        });
         Seguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,19 +176,14 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             }
         });
 
-        Log.d("conexion", String.valueOf(Participando));
-        if (Participando)
-        {
-            Participar.setVisibility(View.GONE);
-        }else
-        {
-            Participar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                }
-            });
-        }
+        Participar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VerPerfilTorneo VPT = new VerPerfilTorneo();
+                VPT.SetIDTorneo(T);
+                Principal.IrAFragment(VPT,true);
+            }
+        });
         return VistaADevolver;
     }
 

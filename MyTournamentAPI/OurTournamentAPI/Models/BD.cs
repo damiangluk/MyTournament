@@ -485,7 +485,7 @@ namespace OurTournamentAPI
         {
             Dictionary<String, Object> P = new Dictionary<string, object>();
             P.Add("@IDTorneo", IDTorneo);
-            SqlDataReader Lector = HacerStoredProcedured("[TraerInfoDeTorneo]", P);
+            SqlDataReader Lector = HacerStoredProcedured("TraerInfoDeTorneo", P);
 
             List<int> ListaInfo = new List<int>();
             if (Lector.Read())

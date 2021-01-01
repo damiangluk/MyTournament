@@ -123,6 +123,7 @@ public class Administracion extends Fragment {
         protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
             int Cantidad=ArrayTorneos.size();
+            Log.d("conexion","La cantidad de torneos es: "+Cantidad);
             if (Cantidad<1)
             {
                 ListaParticipados.setVisibility(View.GONE);
@@ -131,10 +132,10 @@ public class Administracion extends Fragment {
             {
                 if (U.IDTipo == 4)
                 {
-                    TXT1.setText("Participando como creador en:");
+                    TXT1.setText("Eres el creador de:");
                 }else
                 {
-                    TXT1.setText("Participando como administrador en:");
+                    TXT1.setText("Administrando en:");
                 }
                 Adaptador = new AdaptadorTorneos(getContext(), R.layout.item_lista_torneos_seguidos, ArrayTorneos,U.IdUsuario,Principal,true);
                 //ListaParticipados.getLayoutParams().height = 165 * Cantidad;

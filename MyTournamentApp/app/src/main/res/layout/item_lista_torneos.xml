@@ -61,27 +61,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/VerEquipos"
+                android:id="@+id/Participar"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginRight="4dp"
                 android:background="@drawable/flechita_izquierda"
                 android:gravity="center"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/list"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/Participar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/participar_torneo"
-                android:gravity="center"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/list"
-                app:layout_constraintEnd_toEndOf="@+id/BTNSeguir"
-                app:layout_constraintEnd_toStartOf="@+id/VerEquipos"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ListView

@@ -94,7 +94,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
     {
         ImageView Foto;
         final Button Destacada;
-        TextView NombreEquipo,Renglon;
+        TextView NombreEquipo;
         LayoutInflater MiInflador;
         if(VistaADevolver == null)
         {
@@ -103,14 +103,9 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
         }
 
         NombreEquipo = VistaADevolver.findViewById(R.id.Nombre);
-        Renglon = VistaADevolver.findViewById(R.id.renglon);
         Foto = VistaADevolver.findViewById(R.id.foto);
         Destacada = VistaADevolver.findViewById(R.id.Destacada);
 
-        if(pos!= 0)
-        {
-            Renglon.setVisibility(View.GONE);
-        }
         Equipo E = getItem(pos);
         NombreEquipo.setText(E.Nombre);
         String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";

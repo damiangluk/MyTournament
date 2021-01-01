@@ -29,12 +29,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="160dp"
         android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
@@ -47,8 +47,8 @@
                     android:id="@+id/foto"
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:layout_marginStart="30dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="30dp"
                     android:src="@drawable/icono_torneo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,61 +119,38 @@
                     app:layout_constraintEnd_toEndOf="@+id/CantNoticias"
                     app:layout_constraintStart_toStartOf="@+id/CantNoticias"
                     app:layout_constraintTop_toBottomOf="@+id/CantNoticias" />
+
+                <Button
+                    android:id="@+id/BTNSeguir"
+                    android:layout_width="100dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/borde_fondo_azul"
+                    android:gravity="center"
+                    android:text="Seguir"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/foto" />
+
+                <Button
+                    android:id="@+id/BTNParticipar"
+                    android:layout_width="100dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/borde_fondo_azul"
+                    android:gravity="center"
+                    android:text="Participar"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/BTNSeguir" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/ListaDeEspera"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="40dp"
-                android:text="Lista de espera"
-                android:fontFamily="@font/sansposterbold"
-                android:textColor="#000"
-                android:paddingLeft="40dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/fondo_barra_torneo"
-                android:textSize="18sp" />
-            <Button
-                android:id="@+id/Equipos"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="4dp"
-                android:text="Equipos"
-                android:fontFamily="@font/sansposterbold"
-                android:textColor="#000"
-                android:paddingStart="40dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/fondo_barra_torneo"
-                android:textSize="18sp"
-                tools:ignore="RtlSymmetry" />
-
-            <Button
-                android:id="@+id/Partidos"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/sansposterbold"
-                android:background="@drawable/fondo_barra_torneo"
-                android:gravity="center_vertical"
-                android:paddingLeft="40dp"
-                android:text="Partidos"
-                android:textColor="#000"
-                android:textSize="18sp" />
-
-            <Button
-                android:id="@+id/Noticias"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/sansposterbold"
-                android:text="Noticias"
-                android:paddingLeft="40dp"
-                android:textColor="#000"
-                android:gravity="center_vertical"
-                android:background="@drawable/fondo_barra_torneo"
-                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
-
-
+    <ListView
+        android:id="@+id/ListaEquipos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>
