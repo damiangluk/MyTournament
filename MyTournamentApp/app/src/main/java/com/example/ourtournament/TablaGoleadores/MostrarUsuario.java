@@ -100,8 +100,18 @@ public class MostrarUsuario extends Fragment {
 
             Nombre.setText("Nombre: "+G.NombreUsuario1);
             GolesEnTorneo.setText("Goles: "+U.GolesEnTorneo+" goles en torneo");
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG";
-            Picasso.get().load(Ruta).into(Foto);
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + U.IdUsuario + "_Perfil.PNG";
+            Picasso.get().load(Ruta)
+                    .into(Foto, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
+                        }
+                    });
         }
     }
 

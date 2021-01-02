@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Models\Equipo.cs" />
     <Compile Include="Models\Goleadores.cs" />
+    <Compile Include="Models\ListaEspera.cs" />
     <Compile Include="Models\GolesXUsuario.cs" />
     <Compile Include="Models\Noticia.cs" />
     <Compile Include="Models\Partido.cs" />

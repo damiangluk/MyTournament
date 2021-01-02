@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
+import com.example.ourtournament.Objetos.ListaEspera;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Usuario;
@@ -58,11 +59,11 @@ public class AdministrarListaEspera extends Fragment {
         return VistaADevolver;
     }
 
-    private class TraerListaEspera extends AsyncTask<Void,Void, ArrayList<Usuario>>
+    private class TraerListaEspera extends AsyncTask<Void,Void, ArrayList<ListaEspera>>
     {
         @Override
-        protected ArrayList<Usuario> doInBackground(Void... voids) {
-            ArrayList<Usuario> Usuarios= new ArrayList<>();
+        protected ArrayList<ListaEspera> doInBackground(Void... voids) {
+            ArrayList<ListaEspera> Lista= new ArrayList<>();
             try {
                 String Ruta = "GetUsuariosEnEspera/Torneo/"+IDTorneo;
                 TareaAsincronica Tarea = new TareaAsincronica();
@@ -73,16 +74,16 @@ public class AdministrarListaEspera extends Fragment {
                 for (int i = 0; i < VecUsuarios.size(); i++)
                 {
                     JsonElement Elemento = VecUsuarios.get(i);
-                    Usuario U = g.fromJson(Elemento, Usuario.class);
-                    Usuarios.add(U);
+                    ListaEspera LE = g.fromJson(Elemento, ListaEspera.class);
+                    Lista.add(LE);
                 }
             } catch (Exception ErrorOcurrido) {
 
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return Usuarios;
+            return Lista;
         }
-        protected void onPostExecute(ArrayList<Usuario> lista)
+        protected void onPostExecute(ArrayList<ListaEspera> lista)
         {
             AdaptadorListaEspera Adaptador = new AdaptadorListaEspera(Principal,R.layout.item_admin_lista_espera,lista);
             ListaUsuarios.setAdapter(Adaptador);

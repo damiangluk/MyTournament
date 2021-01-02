@@ -90,6 +90,8 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             VistaADevolver = MiInflador.inflate(_Resource, null);
         }
 
+        final Boolean[] Siguiendo = {false};
+        final Boolean[] Participando={false};
         final ListView lista;
         final Button Seguir,Participar;
         final CircleImageView FotoPerfil;
@@ -104,10 +106,12 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
         final TorneoParticipacion T = getItem(pos);
 
         if (T.IDParticipacion1 == 1) {
+            Siguiendo[0] = true;
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Siguiendo");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
         } else if(T.IDParticipacion1 > 1){
+            Participando[0] = true;
             Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
             Seguir.setText("Participando");
             Seguir.setTextColor(Color.rgb(60, 188, 128));
@@ -140,6 +144,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
                 if (T.IDParticipacion1 != 1) {
                     InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
                     Tarea.execute(U.IdUsuario, T.IDTorneo, -1);
+                    Siguiendo[0] = true;
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
                     Seguir.setText("Siguiendo");
                     Seguir.setTextColor(Color.rgb(60, 188, 128));
@@ -152,6 +157,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
                 } else{
                     EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
                     Tarea.execute(U.IdUsuario,T.IDTorneo);
+                    Siguiendo[0] = false;
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(60, 188, 128)));
                     Seguir.setText("seguir");
                     Seguir.setTextColor(Color.rgb(0, 0, 0));
@@ -180,7 +186,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             @Override
             public void onClick(View view) {
                 VerPerfilTorneo VPT = new VerPerfilTorneo();
-                VPT.SetIDTorneo(T);
+                VPT.SetIDTorneo(T,Siguiendo[0], Participando[0]);
                 Principal.IrAFragment(VPT,true);
             }
         });
@@ -200,42 +206,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
              */
         }
     };
-    public void Animacion(TextView objeto, String Nombre, int value, int value2, int Duracion) {
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto, Nombre, value, value2);
-        Animacion.setDuration(Duracion);
-        AnimatorSet SetDeAnimacion = new AnimatorSet();
-        SetDeAnimacion.play(Animacion);
-        SetDeAnimacion.start();
-    }
-
-    private class TraerEquipos extends AsyncTask<Void, Void, ArrayList<Equipo>> {
-        @Override
-        protected ArrayList<Equipo> doInBackground(Void... voids) {
-            ArrayList<Equipo> listaEquipos = new ArrayList<>();
-            String Ruta = "GetPosiciones/Torneo/" + _IDTorneo;
-            TareaAsincronica Tarea = new TareaAsincronica();
-            String Respuesta = Tarea.RealizarTarea(Ruta);
-            Gson g = new Gson();
-            JsonArray VecEquipos = g.fromJson(Respuesta, JsonArray.class);
-
-            for (int i = 0; i < VecEquipos.size(); i++) {
-                JsonElement Elemento = VecEquipos.get(i);
-                Gson gson = new Gson();
-                Equipo E = gson.fromJson(Elemento, Equipo.class);
-                listaEquipos.add(E);
-            }
-
-            return listaEquipos;
-        }
-
-        protected void onPostExecute(ArrayList<Equipo> listaE) {
-            Context contexto = getContext();
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(contexto, R.layout.item_equipos_por_torneo, listaE);
-            Lista.setAdapter(Adaptador);
-            Lista.getLayoutParams().height = 128 * listaE.size();
-            Lista.setVisibility(View.VISIBLE);
-        }
-    }
 
     private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
         Boolean Resultado;

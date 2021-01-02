@@ -136,7 +136,7 @@ namespace OurTournamentAPI.Controllers
         public IHttpActionResult ObtenerUsuarioPorContrasenia(int IDTorneo)
         {
             QQSM Conexion = new QQSM();
-            List<Models.Usuario> ListaUsuarios = Conexion.TraerListaDeEspera(IDTorneo);
+            List<Models.ListaEspera> ListaUsuarios = Conexion.TraerListaDeEspera(IDTorneo);
             return Ok(ListaUsuarios);
         }
     }

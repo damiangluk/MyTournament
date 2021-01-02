@@ -6,6 +6,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.ourtournament.Administracion.Usuario.Configuracion;
 import com.example.ourtournament.Administracion.Usuario.Perfil;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
+import com.example.ourtournament.Objetos.Partido;
 import com.example.ourtournament.Objetos.Preferencias;
 import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Torneo;
@@ -43,6 +45,7 @@ public class VerPerfilTorneo extends Fragment {
     Button BTNSeguir, BTNParticipar,Volver;
     TextView Seguidores,CantNoticias,NombreTorneo;
     CircleImageView FotoPerfil;
+    Boolean Seguido,Participado;
     Torneo T;
     View VistaADevolver = null;
     ListView ListaEquipos;
@@ -57,6 +60,18 @@ public class VerPerfilTorneo extends Fragment {
 
             Referencias();
             SetearListeners();
+            if (Participado)
+            {
+                BTNSeguir.setVisibility(View.GONE);
+                BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
+                BTNParticipar.setText("Participando");
+                BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
+            }else if (Seguido)
+            {
+                BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
+                BTNSeguir.setText("Siguiendo");
+                BTNSeguir.setTextColor(Color.rgb(45, 104, 202));
+            }
         }
         AsyncTasks();
         return VistaADevolver;
@@ -82,9 +97,11 @@ public class VerPerfilTorneo extends Fragment {
         FotoPerfil = VistaADevolver.findViewById(R.id.foto);
     }
 
-    public void SetIDTorneo(Torneo t)
+    public void SetIDTorneo(Torneo t,Boolean seguido, Boolean participado)
     {
         T = t;
+        Seguido = seguido;
+        Participado = participado;
     }
 
     private void AsyncTasks(){
@@ -97,18 +114,40 @@ public class VerPerfilTorneo extends Fragment {
     private View.OnClickListener clickSeguir = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
-            BTNSeguir.setText("Siguiendo");
-            BTNSeguir.setTextColor(Color.rgb(45, 104, 202));
+            if (Seguido)
+            {
+                BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(45, 104, 202)));
+                BTNSeguir.setText("Seguir");
+                BTNSeguir.setTextColor(Color.rgb(10, 10, 10));
+                Seguido=false;
+            }else
+            {
+                BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
+                BTNSeguir.setText("Siguiendo");
+                BTNSeguir.setTextColor(Color.rgb(45, 104, 202));
+                Seguido=true;
+            }
+            TraerEquiposPorTorneo Tarea = new TraerEquiposPorTorneo();
+            Tarea.execute();
         }
     };
 
     private View.OnClickListener clickParticipar = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
-            BTNParticipar.setText("Participando");
-            BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
+            if (Participado)
+            {
+                BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(45, 104, 202)));
+                BTNParticipar.setText("Participar");
+                BTNParticipar.setTextColor(Color.rgb(10, 10, 10));
+                Participado = false;
+            }else
+            {
+                BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
+                BTNParticipar.setText("En espera");
+                BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
+                Participado = true;
+            }
         }
     };
 
@@ -140,7 +179,7 @@ public class VerPerfilTorneo extends Fragment {
         @SuppressLint("SetTextI18n")
         protected void onPostExecute(ArrayList<Equipo> lista)
         {
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido);
             ListaEquipos.setAdapter(Adaptador);
         }
     }

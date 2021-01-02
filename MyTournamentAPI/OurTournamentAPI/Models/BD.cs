@@ -497,29 +497,28 @@ namespace OurTournamentAPI
             return ListaInfo;
         }
 
-        public List<Models.Usuario> TraerListaDeEspera(int IDTorneo)
+        public List<Models.ListaEspera> TraerListaDeEspera(int IDTorneo)
         {
             Dictionary<String, Object> P = new Dictionary<string, object>();
             P.Add("@IDTorneo", IDTorneo);
             SqlDataReader Lector = HacerStoredProcedured("TraerListaDeEspera", P);
 
-            List<Models.Usuario> ListaUsuarios = new List<Models.Usuario>();
-            Models.Usuario UnUsuario;
+            List<Models.ListaEspera> ListaEspera = new List<Models.ListaEspera>();
+            Models.ListaEspera UnUsuario;
             while (Lector.Read())
             {
-                int IDUsuarios = Convert.ToInt32(Lector["IDUsuario"]);
-                string NombreUsuario = Lector["NombreDeUsuario"].ToString();
-                string Contrasenia = Convert.ToString(Lector["Contrasenia"]);
-                DateTime FechaDeNacimiento = Convert.ToDateTime(Lector["FechaDeNacimiento"]);
-                string Email = Convert.ToString(Lector["Email"]);
-                int CantidadGoles = Convert.ToInt32(Lector["CantidadGoles"]);
-                int IDTipo = Convert.ToInt32(Lector["IDTipo"]);
+                int IDUsuario = Convert.ToInt32(Lector["IDUsuario"]);
+                string NombreDeUsuario = Lector["NombreDeUsuario"].ToString();
+                int IDEquipo = Convert.ToInt32(Lector["IDEquipo"]);
+                string NombreEquipo = Lector["NombreEquipo"].ToString();
+                string Mensaje = Convert.ToString(Lector["Mensaje"]);
+   
 
-                UnUsuario = new Models.Usuario(IDUsuarios, NombreUsuario, Contrasenia, FechaDeNacimiento, Email, CantidadGoles, IDTipo);
-                ListaUsuarios.Add(UnUsuario);
+                UnUsuario = new Models.ListaEspera(IDUsuario, NombreDeUsuario, IDEquipo, NombreEquipo, Mensaje);
+                ListaEspera.Add(UnUsuario);
             }
             Desconectar(con);
-            return ListaUsuarios;
+            return ListaEspera;
         }
     }
 }

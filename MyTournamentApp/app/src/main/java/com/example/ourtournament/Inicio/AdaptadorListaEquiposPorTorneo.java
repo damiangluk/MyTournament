@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
+import android.text.BoringLayout;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -65,12 +66,14 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
     private int _Resource;
     private ArrayList<Boolean> ListaDestacado;
     final Boolean[] Destacado = {false};
+    private Boolean Destacable;
 
-    public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista)
+    public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista,Boolean destacable)
     {
         super(contexto,Resource,lista);
         this._Contexto = contexto;
         this._Resource = Resource;
+        this.Destacable = destacable;
         if (lista.size()<1)
         {
             Equipo E = new Equipo(-1,"No hay equipos aún",0,0,0,0,0);
@@ -111,7 +114,10 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
         String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto);
 
-        if (!ListaDestacado.get(pos))
+        if (!Destacable)
+        {
+            Destacada.setVisibility(View.GONE);
+        }else if (!ListaDestacado.get(pos))
         {
             Destacada.setBackgroundResource(R.drawable.estrella_equipos);
         }else

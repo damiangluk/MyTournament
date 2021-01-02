@@ -311,8 +311,18 @@ public class Perfil extends Fragment {
                 GolesEnTorneo.setVisibility(View.VISIBLE);
                 GolesEnTorneo.setText("Goles: "+Usu.GolesEnTorneo+ " goles en torneo");
             }
-            String Ruta = "https://image.freepik.com/vector-gratis/perfil-empresario-dibujos-animados_18591-58479.jpg";
-            Picasso.get().load(Ruta).into(foto);
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG";
+            Picasso.get().load(Ruta)
+                    .into(foto, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(foto);
+                        }
+                    });
         }
     }
 }
