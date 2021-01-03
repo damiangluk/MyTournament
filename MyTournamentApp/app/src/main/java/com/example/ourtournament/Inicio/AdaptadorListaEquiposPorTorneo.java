@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
@@ -59,8 +60,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
-{
+public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
     private ArrayList<Equipo> _ListaEquipos;
     private Context _Contexto;
     private int _Resource;
@@ -151,6 +151,5 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo>
 
         return  VistaADevolver;
     }
-
 
 }

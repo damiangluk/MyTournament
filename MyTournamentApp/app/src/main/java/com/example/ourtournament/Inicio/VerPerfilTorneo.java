@@ -1,18 +1,25 @@
 package com.example.ourtournament.Inicio;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.BoringLayout;
+import android.text.Selection;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
@@ -33,9 +40,15 @@ import com.example.ourtournament.R;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.invoke.VolatileCallSite;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -46,9 +59,11 @@ public class VerPerfilTorneo extends Fragment {
     TextView Seguidores,CantNoticias,NombreTorneo;
     CircleImageView FotoPerfil;
     Boolean Seguido,Participado;
+    int IdUsuario;
     Torneo T;
     View VistaADevolver = null;
     ListView ListaEquipos;
+    ArrayList<Equipo> ArrayEquipos;
     MainActivity Principal;
     Preferencias P;
 
@@ -97,11 +112,12 @@ public class VerPerfilTorneo extends Fragment {
         FotoPerfil = VistaADevolver.findViewById(R.id.foto);
     }
 
-    public void SetIDTorneo(Torneo t,Boolean seguido, Boolean participado)
+    public void SetIDTorneo(Torneo t,Boolean seguido, Boolean participado,int idusuario)
     {
         T = t;
         Seguido = seguido;
         Participado = participado;
+        IdUsuario = idusuario;
     }
 
     private void AsyncTasks(){
@@ -116,38 +132,60 @@ public class VerPerfilTorneo extends Fragment {
         public void onClick(View v) {
             if (Seguido)
             {
+                //EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
+                //Tarea.execute(IdUsuario,T.IDTorneo);
                 BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(45, 104, 202)));
                 BTNSeguir.setText("Seguir");
                 BTNSeguir.setTextColor(Color.rgb(10, 10, 10));
                 Seguido=false;
             }else
             {
+                InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
+                Tarea.execute(IdUsuario, T.IDTorneo, -1);
                 BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
                 BTNSeguir.setText("Siguiendo");
                 BTNSeguir.setTextColor(Color.rgb(45, 104, 202));
                 Seguido=true;
             }
-            TraerEquiposPorTorneo Tarea = new TraerEquiposPorTorneo();
-            Tarea.execute();
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,Seguido);
+            ListaEquipos.setAdapter(Adaptador);
         }
     };
 
     private View.OnClickListener clickParticipar = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (Participado)
-            {
-                BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(45, 104, 202)));
-                BTNParticipar.setText("Participar");
-                BTNParticipar.setTextColor(Color.rgb(10, 10, 10));
-                Participado = false;
-            }else
-            {
-                BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
-                BTNParticipar.setText("En espera");
-                BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
-                Participado = true;
-            }
+
+            final Dialog dialogPersonalizado = new Dialog(Principal);
+            dialogPersonalizado.setContentView(R.layout.solicitud_union_torneo);
+            WindowManager.LayoutParams params = dialogPersonalizado.getWindow().getAttributes();
+            params.width = 1000;
+            params.height =  WindowManager.LayoutParams.WRAP_CONTENT;
+            EditText Mensaje = dialogPersonalizado.findViewById(R.id.Mensaje);
+            Button Enviar = dialogPersonalizado.findViewById(R.id.BTNEnviar);
+            Button Cancelar = dialogPersonalizado.findViewById(R.id.BTNCancelar);
+            ListView lista = dialogPersonalizado.findViewById(R.id.ListaEquipos);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true);
+            lista.setAdapter(Adaptador);
+            dialogPersonalizado.show();
+            Enviar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogPersonalizado.cancel();
+                    BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
+                    BTNParticipar.setText("En espera");
+                    BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
+                    Participado = true;
+                    BTNParticipar.setEnabled(false);
+                }
+            });
+
+            Cancelar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialogPersonalizado.cancel();
+                }
+            });
         }
     };
 
@@ -179,6 +217,7 @@ public class VerPerfilTorneo extends Fragment {
         @SuppressLint("SetTextI18n")
         protected void onPostExecute(ArrayList<Equipo> lista)
         {
+            ArrayEquipos = lista;
             AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido);
             ListaEquipos.setAdapter(Adaptador);
         }
@@ -212,6 +251,85 @@ public class VerPerfilTorneo extends Fragment {
                         }
 
                     });
+        }
+    }
+
+    private class InsertarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
+        Boolean Resultado;
+        @Override
+        protected Boolean doInBackground(Integer... IDS) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/InsertTorneosSeguidos";
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setDoInput(true);
+                miConexion.setDoOutput(true);
+                miConexion.setRequestProperty("Content-Type", "application/json");
+                miConexion.setRequestProperty("Accept", "application/json");
+                miConexion.setRequestMethod("POST");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(IDS);
+                OutputStream OS = miConexion.getOutputStream();
+                OS.write(json.getBytes());
+                OS.flush();
+
+                int ResponseCode = miConexion.getResponseCode();
+
+                InputStream lector = miConexion.getInputStream();
+                InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                JsonParser parseador = new JsonParser();
+                Resultado = parseador.parse(lectorJSon).getAsBoolean();
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return Resultado;
+        }
+
+        protected void onPostExecute(Boolean R) {
+            Log.d("conexion", String.valueOf(R));
+        }
+    }
+
+    private class EliminarTorneoSeguido extends AsyncTask<Integer, Void, Boolean> {
+        Boolean Resultado;
+        @Override
+        protected Boolean doInBackground(Integer... IDS) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/DeleteTorneosSeguidos";
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setDoInput(true);
+                miConexion.setDoOutput(true);
+                miConexion.setRequestProperty("Content-Type", "application/json");
+                miConexion.setRequestProperty("Accept", "application/json");
+                miConexion.setRequestMethod("DELETE");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(IDS);
+                OutputStream OS = miConexion.getOutputStream();
+                OS.write(json.getBytes());
+                OS.flush();
+
+                int ResponseCode = miConexion.getResponseCode();
+                Log.d("conexion", String.valueOf(ResponseCode));
+
+                InputStream lector = miConexion.getInputStream();
+                InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
+                JsonParser parseador = new JsonParser();
+                Resultado = parseador.parse(lectorJSon).getAsBoolean();
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return Resultado;
+        }
+
+        protected void onPostExecute(Boolean R) {
+            Log.d("conexion", String.valueOf(R));
         }
     }
 }

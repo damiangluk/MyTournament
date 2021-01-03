@@ -186,7 +186,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             @Override
             public void onClick(View view) {
                 VerPerfilTorneo VPT = new VerPerfilTorneo();
-                VPT.SetIDTorneo(T,Siguiendo[0], Participando[0]);
+                VPT.SetIDTorneo(T,Siguiendo[0], Participando[0],U.IdUsuario);
                 Principal.IrAFragment(VPT,true);
             }
         });
