@@ -27,6 +27,15 @@ namespace OurTournamentAPI.Controllers
 
         }
 
+        [System.Web.Http.Route("api/UpdateEquipoFavorito")]
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult CambiarEquipoFavorito(List<int> LISTA)
+        {
+            QQSM Conexion = new QQSM();
+            //IDUsuario, IDTorneo,IDEquipo
+            return Ok(Conexion.CambiarEquipoFavorito(LISTA));
+        }
+
         [HttpGet]
         [Route("api/GetEquipoPorID/Equipo/{IDEquipo}")]
         public IHttpActionResult TraerEquipo(int IDEquipo)

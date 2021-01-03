@@ -143,8 +143,7 @@
                     android:textColor="#000"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Email"
-                    android:visibility="gone"/>
+                    app:layout_constraintTop_toBottomOf="@+id/Email" />
 
                 <Spinner
                     android:id="@+id/Torneos"
@@ -187,7 +186,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/jai"
-                    android:text="Torneos seguidos"
+                    android:text="Torneos seguidos:"
                     android:textColor="#FFF"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/ListaTorneosSeguidos"

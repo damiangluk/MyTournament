@@ -99,7 +99,7 @@ public class MostrarUsuario extends Fragment {
             Edad.setText("Edad: "+edad.getYears()+ " años");
 
             Nombre.setText("Nombre: "+G.NombreUsuario1);
-            GolesEnTorneo.setText("Goles: "+U.GolesEnTorneo+" goles en torneo");
+            GolesEnTorneo.setText("Goles en torneo: "+U.GolesEnTorneo);
             String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + U.IdUsuario + "_Perfil.PNG";
             Picasso.get().load(Ruta)
                     .into(Foto, new com.squareup.picasso.Callback() {

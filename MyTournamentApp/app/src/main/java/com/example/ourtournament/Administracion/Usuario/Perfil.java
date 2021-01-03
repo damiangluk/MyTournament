@@ -277,6 +277,18 @@ public class Perfil extends Fragment {
             Tarea1.execute();
             TraerTorneosSeguidosPorUsuario Tarea2 = new TraerTorneosSeguidosPorUsuario();
             Tarea2.execute();
+            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG";
+            Picasso.get().load(Ruta)
+                    .into(foto, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(foto);
+                        }
+                    });
             if (Usu.IDTipo<4)
             {
                 Volver.setVisibility(View.GONE);
@@ -288,7 +300,7 @@ public class Perfil extends Fragment {
                 TorneosSeguidos.setVisibility(View.GONE);
                 TorneosParticipados.setVisibility(View.GONE);
             }
-
+            Nombre.setText("Nombre: "+Usu.NombreUsuario);
             String contra = "";
             for (int i = 0; i < Usu.Contrasenia.length() ;i++)
             {
@@ -303,26 +315,17 @@ public class Perfil extends Fragment {
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             Period edad = Period.between(LocalDate.of(year, month, day), LocalDate.now());
 
-            Nombre.setText("Nombre: "+Usu.NombreUsuario);
             Edad.setText("Edad: "+edad.getYears()+" años");
             Email.setText("Email: "+Usu.Email);
             if (Usu.IDTipo == 2 || Usu.IDTipo == 3)
             {
                 GolesEnTorneo.setVisibility(View.VISIBLE);
                 GolesEnTorneo.setText("Goles: "+Usu.GolesEnTorneo+ " goles en torneo");
+            }else
+            {
+                GolesEnTorneo.setVisibility(View.GONE);
             }
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG";
-            Picasso.get().load(Ruta)
-                    .into(foto, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
 
-                        @Override
-                        public void onError(Exception e) {
-                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(foto);
-                        }
-                    });
         }
     }
 }

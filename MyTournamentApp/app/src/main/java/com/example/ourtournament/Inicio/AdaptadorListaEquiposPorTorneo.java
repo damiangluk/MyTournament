@@ -56,6 +56,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,15 +66,17 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
     private Context _Contexto;
     private int _Resource;
     private ArrayList<Boolean> ListaDestacado;
-    final Boolean[] Destacado = {false};
     private Boolean Destacable;
+    private int IDEquipo,IDUsuario;
 
-    public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista,Boolean destacable)
+    public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista,Boolean destacable,int idequipo,int idusuario)
     {
         super(contexto,Resource,lista);
         this._Contexto = contexto;
         this._Resource = Resource;
         this.Destacable = destacable;
+        this.IDEquipo = idequipo;
+        this.IDUsuario = idusuario;
         if (lista.size()<1)
         {
             Equipo E = new Equipo(-1,"No hay equipos aún",0,0,0,0,0);
@@ -88,7 +91,13 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
         ListaDestacado = new ArrayList<>();
         for (int i=0;i<Cantidad;i++)
         {
-            ListaDestacado.add(false);
+            if (_ListaEquipos.get(i).IDEquipo == IDEquipo)
+            {
+                ListaDestacado.add(true);
+            }else
+            {
+                ListaDestacado.add(false);
+            }
         }
     }
 
@@ -109,7 +118,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
         Foto = VistaADevolver.findViewById(R.id.foto);
         Destacada = VistaADevolver.findViewById(R.id.Destacada);
 
-        Equipo E = getItem(pos);
+        final Equipo E = getItem(pos);
         NombreEquipo.setText(E.Nombre);
         String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
         Picasso.get().load(Ruta).into(Foto);
@@ -129,6 +138,9 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
             public void onClick(View view) {
                 if (!ListaDestacado.get(pos))
                 {
+                    CambiarEquipoFavorito Tarea = new CambiarEquipoFavorito();
+                    Tarea.execute(IDUsuario,E.IDTorneo,E.IDEquipo);
+                    Log.d("conexion","Usuario: "+IDUsuario+" Torneo: "+E.IDTorneo+" Equipo: "+E.IDEquipo);
                     for (int i=0;i<ListaDestacado.size();i++)
                     {
                         ListaDestacado.set(i,false);
@@ -152,4 +164,36 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
         return  VistaADevolver;
     }
 
+
+    private class CambiarEquipoFavorito extends AsyncTask<Integer, Void, Void> {
+        int Resultado;
+
+        @Override
+        protected Void doInBackground(Integer... IDS) {
+            try {
+                String miURL = "http://10.0.2.2:55859/api/UpdateEquipoFavorito";
+                Log.d("conexion", "estoy accediendo a la ruta " + miURL);
+                URL miRuta = new URL(miURL);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                miConexion.setDoInput(true);
+                miConexion.setDoOutput(true);
+                miConexion.setRequestProperty("Content-Type", "application/json");
+                miConexion.setRequestProperty("Accept", "application/json");
+                miConexion.setRequestMethod("POST");
+
+                Gson gson = new Gson();
+                String json = gson.toJson(IDS);
+                OutputStream OS = miConexion.getOutputStream();
+                OS.write(json.getBytes());
+                OS.flush();
+
+                int ResponseCode = miConexion.getResponseCode();
+                Log.d("conexion","La respuesta fue: "+ResponseCode);
+                miConexion.disconnect();
+            } catch (Exception ErrorOcurrido) {
+                Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
+            }
+            return null;
+        }
+    }
 }

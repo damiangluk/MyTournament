@@ -59,7 +59,7 @@ public class VerPerfilTorneo extends Fragment {
     TextView Seguidores,CantNoticias,NombreTorneo;
     CircleImageView FotoPerfil;
     Boolean Seguido,Participado;
-    int IdUsuario;
+    int IdUsuario,IDEquipo;
     Torneo T;
     View VistaADevolver = null;
     ListView ListaEquipos;
@@ -112,12 +112,13 @@ public class VerPerfilTorneo extends Fragment {
         FotoPerfil = VistaADevolver.findViewById(R.id.foto);
     }
 
-    public void SetIDTorneo(Torneo t,Boolean seguido, Boolean participado,int idusuario)
+    public void SetIDTorneo(Torneo t,Boolean seguido, Boolean participado,int idusuario,int idequipo)
     {
         T = t;
         Seguido = seguido;
         Participado = participado;
         IdUsuario = idusuario;
+        IDEquipo = idequipo;
     }
 
     private void AsyncTasks(){
@@ -132,12 +133,19 @@ public class VerPerfilTorneo extends Fragment {
         public void onClick(View v) {
             if (Seguido)
             {
-                //EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
-                //Tarea.execute(IdUsuario,T.IDTorneo);
+                EliminarTorneoSeguido Tarea = new EliminarTorneoSeguido();
+                Tarea.execute(IdUsuario,T.IDTorneo);
                 BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(45, 104, 202)));
                 BTNSeguir.setText("Seguir");
                 BTNSeguir.setTextColor(Color.rgb(10, 10, 10));
                 Seguido=false;
+                int num = P.ObtenerInt("IDTorneo",-1);
+                if (num != -1 & num == T.IDTorneo)
+                {
+                    P.EliminarInt("IDTorneo");
+                    TraerTorneosParticipadosPorUsuario T = new TraerTorneosParticipadosPorUsuario();
+                    T.execute();
+                }
             }else
             {
                 InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
@@ -146,8 +154,13 @@ public class VerPerfilTorneo extends Fragment {
                 BTNSeguir.setText("Siguiendo");
                 BTNSeguir.setTextColor(Color.rgb(45, 104, 202));
                 Seguido=true;
+                int num = P.ObtenerInt("IDTorneo",-1);
+                if (num == -1)
+                {
+                    P.GuardarInt("IDTorneo",T.IDTorneo);
+                }
             }
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,Seguido);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,Seguido,IDEquipo,IdUsuario);
             ListaEquipos.setAdapter(Adaptador);
         }
     };
@@ -165,7 +178,7 @@ public class VerPerfilTorneo extends Fragment {
             Button Enviar = dialogPersonalizado.findViewById(R.id.BTNEnviar);
             Button Cancelar = dialogPersonalizado.findViewById(R.id.BTNCancelar);
             ListView lista = dialogPersonalizado.findViewById(R.id.ListaEquipos);
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true,IDEquipo,IdUsuario);
             lista.setAdapter(Adaptador);
             dialogPersonalizado.show();
             Enviar.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +210,66 @@ public class VerPerfilTorneo extends Fragment {
         }
     };
 
+    private class TraerTorneosParticipadosPorUsuario extends AsyncTask<Integer,Void,ArrayList<Torneo>> {
+        @Override
+        protected ArrayList<Torneo> doInBackground(Integer... voids) {
+            ArrayList<Torneo> ArrayTorneos = new ArrayList<>();
+            String Ruta = "GetTorneosParticipadosPorUsuario/Usuario/"+IdUsuario;
+            TareaAsincronica Tarea = new TareaAsincronica();
+            String Respuesta = Tarea.RealizarTarea(Ruta);
+            Gson g = new Gson();
+            JsonArray VecTorneos = g.fromJson(Respuesta, JsonArray.class);
+
+            for (int i = 0; i < VecTorneos.size(); i++) {
+                JsonElement Elemento = VecTorneos.get(i);
+                Gson gson = new Gson();
+                Torneo T = gson.fromJson(Elemento, Torneo.class);
+                ArrayTorneos.add(T);
+            }
+            return ArrayTorneos;
+        }
+        protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
+        {
+            int Cantidad=ArrayTorneos.size();
+            if (Cantidad<1)
+            {
+                TraerTorneosSeguidosPorUsuario T = new TraerTorneosSeguidosPorUsuario();
+                T.execute();
+            }else
+            {
+                P.GuardarInt("IDTorneo",ArrayTorneos.get(Cantidad-1).IDTorneo);
+            }
+        }
+    }
+
+    private class TraerTorneosSeguidosPorUsuario extends AsyncTask<Integer,Void, ArrayList<Torneo>> {
+        @Override
+        protected ArrayList<Torneo> doInBackground(Integer... voids) {
+            ArrayList<Torneo> ArrayTorneos = new ArrayList<>();
+            String Ruta = "GetTorneosSeguidosPorUsuario/Usuario/"+IdUsuario;
+            TareaAsincronica Tarea = new TareaAsincronica();
+            String Respuesta = Tarea.RealizarTarea(Ruta);
+            Gson g = new Gson();
+            JsonArray VecTorneos = g.fromJson(Respuesta, JsonArray.class);
+
+            for (int i = 0; i < VecTorneos.size(); i++) {
+                JsonElement Elemento = VecTorneos.get(i);
+                Gson gson = new Gson();
+                Torneo T = gson.fromJson(Elemento, Torneo.class);
+                ArrayTorneos.add(T);
+            }
+            return ArrayTorneos;
+        }
+        protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
+        {
+            int Cantidad=ArrayTorneos.size();
+            if (Cantidad>0)
+            {
+                P.GuardarInt("IDTorneo",ArrayTorneos.get(Cantidad-1).IDTorneo);
+            }
+        }
+    }
+
     private class TraerEquiposPorTorneo extends AsyncTask<Integer,Void,ArrayList<Equipo>> {
         @Override
         protected ArrayList<Equipo> doInBackground(Integer... voids) {
@@ -218,7 +291,7 @@ public class VerPerfilTorneo extends Fragment {
         protected void onPostExecute(ArrayList<Equipo> lista)
         {
             ArrayEquipos = lista;
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido);
+            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido,IDEquipo,IdUsuario);
             ListaEquipos.setAdapter(Adaptador);
         }
     }

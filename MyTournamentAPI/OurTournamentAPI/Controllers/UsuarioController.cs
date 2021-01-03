@@ -13,7 +13,7 @@ namespace OurTournamentAPI.Controllers
         [Route("api/GetTorneosSeguidosPorUsuario/Usuario/{IDUsuario}")]
         public IHttpActionResult ObtenerTorneosSeguidosPorUsuario(int IDUsuario)
         {
-            List<Models.Torneo> Lista = new List<Models.Torneo>();
+            List<Models.TorneoParticipacion> Lista = new List<Models.TorneoParticipacion>();
             QQSM Conexion = new QQSM();
             Lista = Conexion.TraerTorneosSeguidosPorUsuario(IDUsuario);
             if (Lista != null)
@@ -30,7 +30,7 @@ namespace OurTournamentAPI.Controllers
         [Route("api/GetTorneosParticipadosPorUsuario/Usuario/{IDUsuario}")]
         public IHttpActionResult ObtenerTorneosParticipadosPorUsuario(int IDUsuario)
         {
-            List<Models.Torneo> Lista = new List<Models.Torneo>();
+            List<Models.TorneoParticipacion> Lista = new List<Models.TorneoParticipacion>();
             QQSM Conexion = new QQSM();
             Lista = Conexion.TraerTorneosParticipadosPorUsuario(IDUsuario);
             if (Lista != null)
