@@ -67,7 +67,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
     private int _Resource;
     private ArrayList<Boolean> ListaDestacado;
     private Boolean Destacable;
-    private int IDEquipo,IDUsuario;
+    public int IDEquipo,IDUsuario;
 
     public AdaptadorListaEquiposPorTorneo(Context contexto,int Resource,ArrayList<Equipo> lista,Boolean destacable,int idequipo,int idusuario)
     {
@@ -138,6 +138,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
             public void onClick(View view) {
                 if (!ListaDestacado.get(pos))
                 {
+                    IDEquipo = E.IDEquipo;
                     CambiarEquipoFavorito Tarea = new CambiarEquipoFavorito();
                     Tarea.execute(IDUsuario,E.IDTorneo,E.IDEquipo);
                     Log.d("conexion","Usuario: "+IDUsuario+" Torneo: "+E.IDTorneo+" Equipo: "+E.IDEquipo);
@@ -149,6 +150,8 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
                     notifyDataSetChanged();
                 }else
                 {
+                    CambiarEquipoFavorito Tarea = new CambiarEquipoFavorito();
+                    Tarea.execute(IDUsuario,E.IDTorneo,0);
                     ListaDestacado.set(pos,false);
                     notifyDataSetChanged();
                 }

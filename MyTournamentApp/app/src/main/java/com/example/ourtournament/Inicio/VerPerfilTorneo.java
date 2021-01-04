@@ -53,7 +53,8 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class VerPerfilTorneo extends Fragment {
+public class
+VerPerfilTorneo extends Fragment {
     FragmentManager AdminFragments;
     Button BTNSeguir, BTNParticipar,Volver;
     TextView Seguidores,CantNoticias,NombreTorneo;
@@ -66,6 +67,7 @@ public class VerPerfilTorneo extends Fragment {
     ArrayList<Equipo> ArrayEquipos;
     MainActivity Principal;
     Preferencias P;
+    AdaptadorListaEquiposPorTorneo Adaptador;
 
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -160,7 +162,7 @@ public class VerPerfilTorneo extends Fragment {
                     P.GuardarInt("IDTorneo",T.IDTorneo);
                 }
             }
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,Seguido,IDEquipo,IdUsuario);
+            Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,Seguido,IDEquipo,IdUsuario);
             ListaEquipos.setAdapter(Adaptador);
         }
     };
@@ -178,7 +180,7 @@ public class VerPerfilTorneo extends Fragment {
             Button Enviar = dialogPersonalizado.findViewById(R.id.BTNEnviar);
             Button Cancelar = dialogPersonalizado.findViewById(R.id.BTNCancelar);
             ListView lista = dialogPersonalizado.findViewById(R.id.ListaEquipos);
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true,IDEquipo,IdUsuario);
+            AdaptadorListaEquiposPorTorneo Adaptador2 = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true,Adaptador.IDEquipo,IdUsuario);
             lista.setAdapter(Adaptador);
             dialogPersonalizado.show();
             Enviar.setOnClickListener(new View.OnClickListener() {
@@ -291,7 +293,7 @@ public class VerPerfilTorneo extends Fragment {
         protected void onPostExecute(ArrayList<Equipo> lista)
         {
             ArrayEquipos = lista;
-            AdaptadorListaEquiposPorTorneo Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido,IDEquipo,IdUsuario);
+            Adaptador = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,lista,Seguido,IDEquipo,IdUsuario);
             ListaEquipos.setAdapter(Adaptador);
         }
     }
