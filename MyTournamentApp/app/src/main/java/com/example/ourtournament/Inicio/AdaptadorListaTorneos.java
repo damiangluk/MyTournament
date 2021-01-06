@@ -46,8 +46,6 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
     private ArrayList<Boolean> _ListaAbiertos;
     private Context _Contexto;
     private int _Resource;
-    private int _IDTorneo;
-    private ListView Lista;
     private Preferencias _P;
     private Usuario U;
     private Boolean Participando = false;
@@ -143,7 +141,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             public void onClick(View view) {
                 if (T.IDParticipacion1 != 1) {
                     InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
-                    Tarea.execute(U.IdUsuario, T.IDTorneo, -1);
+                    Tarea.execute(U.IdUsuario, T.IDTorneo, 0);
                     Siguiendo[0] = true;
                     Seguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(33, 36, 35)));
                     Seguir.setText("Siguiendo");
@@ -163,7 +161,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
                     Seguir.setTextColor(Color.rgb(0, 0, 0));
                     T.IDParticipacion1 = 0;
                     int num = _P.ObtenerInt("IDTorneo",-1);
-                    if (num != -1 & num == T.IDTorneo)
+                    if (num != -1 || num == T.IDTorneo)
                     {
                         _P.EliminarInt("IDTorneo");
                         TraerTorneosParticipadosPorUsuario T = new TraerTorneosParticipadosPorUsuario();

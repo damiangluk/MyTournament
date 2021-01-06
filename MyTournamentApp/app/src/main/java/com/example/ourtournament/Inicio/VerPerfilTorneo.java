@@ -142,7 +142,7 @@ VerPerfilTorneo extends Fragment {
                 BTNSeguir.setTextColor(Color.rgb(10, 10, 10));
                 Seguido=false;
                 int num = P.ObtenerInt("IDTorneo",-1);
-                if (num != -1 & num == T.IDTorneo)
+                if (num != -1 || num == T.IDTorneo)
                 {
                     P.EliminarInt("IDTorneo");
                     TraerTorneosParticipadosPorUsuario T = new TraerTorneosParticipadosPorUsuario();
@@ -151,7 +151,7 @@ VerPerfilTorneo extends Fragment {
             }else
             {
                 InsertarTorneoSeguido Tarea = new InsertarTorneoSeguido();
-                Tarea.execute(IdUsuario, T.IDTorneo, -1);
+                Tarea.execute(IdUsuario, T.IDTorneo, 0);
                 BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
                 BTNSeguir.setText("Siguiendo");
                 BTNSeguir.setTextColor(Color.rgb(45, 104, 202));

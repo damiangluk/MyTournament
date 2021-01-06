@@ -111,7 +111,7 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
                 _ListaTorneos.remove(pos);
                 notifyDataSetChanged();
                 int num = P.ObtenerInt("IDTorneo",-1);
-                if (num != -1 & num == T.IDTorneo)
+                if (num != -1 || num == T.IDTorneo)
                 {
                     P.EliminarInt("IDTorneo");
                     TraerTorneosParticipadosPorUsuario T = new TraerTorneosParticipadosPorUsuario();
