@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.ListaEspera;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
@@ -51,18 +52,8 @@ public class AdaptadorListaEspera extends ArrayAdapter<ListaEspera> {
         final ImageView Foto = VistaADevolver.findViewById(R.id.Foto);
 
         final ListaEspera LE = getItem(pos);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + LE.IdUsuario + "_Perfil.PNG";
-        Picasso.get().load(Ruta)
-                .into(Foto, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
-                    }
-                });
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Usuarios/ID" + LE.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
         Nombre.setText(LE.NombreUsuario);
         NombreEquipo.setText(LE.NombreEquipo);
         Aceptar.setOnClickListener(new View.OnClickListener() {

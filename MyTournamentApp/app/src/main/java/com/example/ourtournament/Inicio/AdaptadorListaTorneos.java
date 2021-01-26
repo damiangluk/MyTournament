@@ -121,19 +121,8 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
             Seguir.setTextColor(Color.rgb(0, 0, 0));
         }
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID" + T.IDTorneo + "_Perfil.JPG";
-        Picasso.get().load(Ruta)
-                .into(FotoPerfil, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        FotoPerfil.setImageResource(R.drawable.icono_torneo);
-                    }
-
-                });
+        TareaAsincronica Tarea = new TareaAsincronica();
+        Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
         NombreTorneo.setText(T.NombreTorneo);
 
         Seguir.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +199,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/InsertTorneosSeguidos";
+                String miURL = "http://181.47.112.9/MyTournament/api/InsertTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -270,7 +259,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/DeleteTorneosSeguidos";
+                String miURL = "http://181.47.112.9/MyTournament/api/DeleteTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();

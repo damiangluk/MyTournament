@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.GolesXUsuario;
 import com.example.ourtournament.Objetos.Partido;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
 
@@ -67,18 +68,8 @@ public class AdaptadorGolesXPartido extends ArrayAdapter<GolesXUsuario>
                 Palabra = " Gol";
             }
             Goles.setText(GU.Cantgoles+Palabra);
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + GU.IdUsuario + "_Perfil.PNG";
-            Picasso.get().load(Ruta)
-                    .into(Foto, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
-                        }
-                    });
+            TareaAsincronica Tarea = new TareaAsincronica();
+            Tarea.CargarFoto("Usuarios/ID" + GU.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
 
         }else
         {

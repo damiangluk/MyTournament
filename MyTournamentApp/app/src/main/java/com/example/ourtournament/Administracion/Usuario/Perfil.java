@@ -73,6 +73,7 @@ public class Perfil extends Fragment {
     MainActivity Principal;
     Preferencias P;
     Usuario Usu;
+    TareaAsincronica Tarea;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class Perfil extends Fragment {
 
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
+        Tarea = new TareaAsincronica();
 
         LlenarDatos();
         SetearListeners();
@@ -154,7 +156,6 @@ public class Perfil extends Fragment {
         protected ArrayList<Torneo> doInBackground(Integer... voids) {
             ArrayList<Torneo> ArrayTorneos = new ArrayList<>();
             String Ruta = "GetTorneosSeguidosPorUsuario/Usuario/"+Usu.IdUsuario;
-            TareaAsincronica Tarea = new TareaAsincronica();
             String Respuesta = Tarea.RealizarTarea(Ruta);
             Gson g = new Gson();
             JsonArray VecTorneos = g.fromJson(Respuesta, JsonArray.class);
@@ -210,7 +211,6 @@ public class Perfil extends Fragment {
         protected ArrayList<Torneo> doInBackground(Integer... voids) {
             ArrayList<Torneo> ArrayTorneos = new ArrayList<>();
             String Ruta = "GetTorneosParticipadosPorUsuario/Usuario/"+Usu.IdUsuario;
-            TareaAsincronica Tarea = new TareaAsincronica();
             String Respuesta = Tarea.RealizarTarea(Ruta);
             Gson g = new Gson();
             JsonArray VecTorneos = g.fromJson(Respuesta, JsonArray.class);
@@ -261,7 +261,6 @@ public class Perfil extends Fragment {
         @Override
         protected Usuario doInBackground(Void... voids) {
             String Ruta = "GetUsuarioPorID/Usuario/"+Usu.IdUsuario;
-            TareaAsincronica Tarea = new TareaAsincronica();
             String Respuesta = Tarea.RealizarTarea(Ruta);
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
             Usuario U = gson.fromJson(Respuesta, Usuario.class);
@@ -277,18 +276,7 @@ public class Perfil extends Fragment {
             Tarea1.execute();
             TraerTorneosSeguidosPorUsuario Tarea2 = new TraerTorneosSeguidosPorUsuario();
             Tarea2.execute();
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG";
-            Picasso.get().load(Ruta)
-                    .into(foto, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(foto);
-                        }
-                    });
+            Tarea.CargarFoto("Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG",foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
             if (Usu.IDTipo<4)
             {
                 Volver.setVisibility(View.GONE);

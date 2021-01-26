@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Noticia;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
 
@@ -58,9 +59,8 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         Titulo.setText(Not.Titulo);
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Noticias/ID"+Not.IDNoticia+"_1.JPG";
-        Picasso.get().load(Ruta).into(imageView);
-
+        TareaAsincronica Tarea = new TareaAsincronica();
+        Tarea.CargarFoto("Noticias/ID"+Not.IDNoticia+"_1.JPG",imageView,"");
         return  VistaADevolver;
     }
 }

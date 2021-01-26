@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Noticia;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
 
@@ -40,20 +41,8 @@ public class AdaptadorAdminNoticias extends ArrayAdapter<Noticia> {
         Noticia N = getItem(pos);
         final ImageView Foto = VistaADevolver.findViewById(R.id.Foto);
         TextView Nombre = VistaADevolver.findViewById(R.id.Nombre);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Noticias/ID" + N.IDNoticia + "_1.JPG";
-
-        Picasso.get().load(Ruta)
-                .into(Foto, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Foto.setImageResource(R.drawable.icono_equipo);
-                    }
-
-                });
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Noticias/ID" + N.IDNoticia + "_1.JPG",Foto,"");
         Nombre.setText(N.Titulo);
 
         return VistaADevolver;

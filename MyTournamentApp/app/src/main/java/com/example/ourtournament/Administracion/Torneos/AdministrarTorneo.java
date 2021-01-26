@@ -62,19 +62,9 @@ public class AdministrarTorneo extends Fragment{
             P = Principal.CargarSharedPreferences();
         }
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID"+T.IDTorneo+"_Perfil.JPG";
-        Picasso.get().load(Ruta)
-                .into(Perfil, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Torneos/ID"+T.IDTorneo+"_Perfil.JPG",Perfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
 
-                    @Override
-                    public void onError(Exception e) {
-                        Perfil.setImageResource(R.drawable.icono_torneo);
-                    }
-
-                });
         NombreTorneo.setText(T.NombreTorneo);
         Equipos.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -100,18 +100,8 @@ public class MostrarUsuario extends Fragment {
 
             Nombre.setText("Nombre: "+G.NombreUsuario1);
             GolesEnTorneo.setText("Goles en torneo: "+U.GolesEnTorneo);
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Usuarios/ID" + U.IdUsuario + "_Perfil.PNG";
-            Picasso.get().load(Ruta)
-                    .into(Foto, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
-                        }
-                    });
+            TareaAsincronica Tarea = new TareaAsincronica();
+            Tarea.CargarFoto("Usuarios/ID" + U.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
         }
     }
 

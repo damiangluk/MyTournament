@@ -58,8 +58,8 @@ public class MostrarEquipo extends Fragment {
         PJugados.setText(String.valueOf(E.PartidosJugados));
         GolesAFavor.setText(String.valueOf(E.GolesAFavor));
         GolesEnContra.setText(String.valueOf(E.GolesEnContra));
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto);
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

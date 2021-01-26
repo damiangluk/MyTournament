@@ -37,6 +37,7 @@ public class MostrarPartido extends Fragment {
     View VistaADevolver;
     ArrayList<GolesXUsuario> Goles1;
     ArrayList<GolesXUsuario> Goles2;
+    TareaAsincronica Tarea;
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class MostrarPartido extends Fragment {
             finds(VistaADevolver);
         }
 
+        Tarea = new TareaAsincronica();
         Goles1 = new ArrayList<>();
         Goles2 = new ArrayList<>();
 
@@ -58,6 +60,7 @@ public class MostrarPartido extends Fragment {
         if (Par.GolesLocal == -1)
         {
             jugado.setText("El partido se jugara el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
+            jugado.setBackgroundResource(R.drawable.bordes_fondo_azul);
             Resultado.setText("-:-");
 
             NombreE1.setText("No hay goles");
@@ -68,14 +71,13 @@ public class MostrarPartido extends Fragment {
             Tarea.execute();
             Resultado.setText(Par.GolesLocal + " - "+ Par.GolesVisitante);
             jugado.setText("El partido se jugo el "+day+"/"+month+" a las "+horas+":"+minutos+" horas");
+            jugado.setBackgroundResource(R.drawable.bordes_fondo_rojo);
             NombreE1.setText(Par.NombreEquipoLocal);
             NombreE2.setText(Par.NombreEquipoVisitante);
         }
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto1);
-        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto2);
+        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
 
         Jorn.setText("Jornada "+Par.Jornada);
         E1.setText(Par.NombreEquipoLocal);

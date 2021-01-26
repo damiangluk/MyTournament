@@ -83,6 +83,7 @@ VerPerfilTorneo extends Fragment {
                 BTNParticipar.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
                 BTNParticipar.setText("Participando");
                 BTNParticipar.setTextColor(Color.rgb(45, 104, 202));
+                BTNParticipar.setEnabled(false);
             }else if (Seguido)
             {
                 BTNSeguir.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(10, 10, 10)));
@@ -313,19 +314,8 @@ VerPerfilTorneo extends Fragment {
             Seguidores.setText(String.valueOf(Info.get(0)));
             CantNoticias.setText(String.valueOf(Info.get(1)));
             NombreTorneo.setText(T.NombreTorneo);
-            String Ruta = "http://10.0.2.2:55859/Imagenes/Torneos/ID" + T.IDTorneo + "_Perfil.JPG";
-            Picasso.get().load(Ruta)
-                    .into(FotoPerfil, new com.squareup.picasso.Callback() {
-                        @Override
-                        public void onSuccess() {
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            FotoPerfil.setImageResource(R.drawable.icono_torneo);
-                        }
-
-                    });
+            TareaAsincronica Tarea = new TareaAsincronica();
+            Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
         }
     }
 

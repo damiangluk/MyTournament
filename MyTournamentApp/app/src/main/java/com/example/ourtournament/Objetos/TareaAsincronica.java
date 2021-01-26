@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONStringer;
 
@@ -25,9 +27,11 @@ import java.net.URL;
 public class TareaAsincronica {
 
     String Ruta1;
+    String RutaFoto;
     public TareaAsincronica()
     {
-        Ruta1 = "http://http://181.47.112.9/api/";
+        Ruta1 = "http://181.47.112.9/MyTournament/api/";
+        RutaFoto = "http://181.47.112.9/MyTournament/Imagenes/";
     }
     public String RealizarTarea(String Ruta2)
     {
@@ -54,5 +58,24 @@ public class TareaAsincronica {
             Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
         }
         return Respuesta;
+    }
+
+    public void CargarFoto(final String Ruta, final ImageView Foto, final String RutaError)
+    {
+        String URL = RutaFoto+Ruta;
+        Picasso.get().load(URL)
+                .into(Foto, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        if (RutaError != "")
+                        {
+                            Picasso.get().load(RutaError).into(Foto);
+                        }
+                    }
+                });
     }
 }

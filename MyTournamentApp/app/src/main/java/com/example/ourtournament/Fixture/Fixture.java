@@ -133,33 +133,23 @@ public class Fixture extends Fragment {
     {
         @Override
         protected ArrayList<String> doInBackground(Void... voids) {
-            ArrayList<String> listaJornada= new ArrayList<>();
+            ArrayList<String> listaJornadas = new ArrayList<>();
             try {
-                String miURL = "http://10.0.2.2:55859/api/GetJornadas/Torneo/" + IDTorneo;
-                Log.d("conexion", "estoy accediendo a la ruta "+miURL);
-                URL miRuta = new URL(miURL);
-                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
-                miConexion.setRequestMethod("GET");
-                if (miConexion.getResponseCode() == 200) {
-                    Log.d("conexion", "me pude conectar perfectamente");
-                    InputStream lector = miConexion.getInputStream();
-                    InputStreamReader lectorJSon = new InputStreamReader(lector, "utf-8");
-                    JsonParser parseador = new JsonParser();
-                    JsonArray VecJornadas = parseador.parse(lectorJSon).getAsJsonArray();
-                    for (int i = 0; i < VecJornadas.size(); i++)
-                    {
-                        int Jornada = VecJornadas.get(i).getAsInt();
-                        listaJornada.add("JORNADA "+Jornada);
-                    }
-                } else {
-                    Log.d("Conexion", "Me pude conectar pero algo malo pasó");
+                String Ruta = "GetJornadas/Torneo/" + IDTorneo;
+                TareaAsincronica Tarea = new TareaAsincronica();
+                String Respuesta = Tarea.RealizarTarea(Ruta);
+                Gson g = new Gson();
+                JsonArray VecJornadas = g.fromJson(Respuesta, JsonArray.class);
+                for (int i = 0; i < VecJornadas.size(); i++)
+                {
+                    int Jornada = VecJornadas.get(i).getAsInt();
+                    listaJornadas.add("JORNADA "+Jornada);
                 }
-                miConexion.disconnect();
             } catch (Exception ErrorOcurrido) {
 
                 Log.d("Conexion", "Al conectar o procesar ocurrió Error: " + ErrorOcurrido.getMessage());
             }
-            return listaJornada;
+            return listaJornadas;
         }
         protected void onPostExecute(ArrayList<String> lista)
         {

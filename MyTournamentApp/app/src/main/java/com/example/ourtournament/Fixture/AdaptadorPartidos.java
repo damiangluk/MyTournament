@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.Partido;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
 
@@ -60,10 +61,9 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
         Foto1 =VistaADevolver.findViewById(R.id.LogoEquipo1);
 
         Partido P = getItem(pos);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+P.IDEquipoLocal+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto1);
-        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+P.IDEquipoVisitante+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto2);
+        TareaAsincronica Tarea = new TareaAsincronica();
+        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoLocal+"_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoVisitante+"_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
         if(pos == 0)
         {
             renglon.setVisibility(View.GONE);

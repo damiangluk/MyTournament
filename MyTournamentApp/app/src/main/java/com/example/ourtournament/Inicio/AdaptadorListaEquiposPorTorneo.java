@@ -41,6 +41,7 @@ import androidx.annotation.Nullable;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
@@ -120,8 +121,9 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
 
         final Equipo E = getItem(pos);
         NombreEquipo.setText(E.Nombre);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID"+E.IDEquipo+"_Escudo.PNG";
-        Picasso.get().load(Ruta).into(Foto);
+
+        TareaAsincronica Tarea = new TareaAsincronica();
+        Tarea.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
 
         if (!Destacable)
         {
@@ -174,7 +176,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
         @Override
         protected Void doInBackground(Integer... IDS) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/UpdateEquipoFavorito";
+                String miURL = "http://181.47.112.9/MyTournament/api/UpdateEquipoFavorito";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();

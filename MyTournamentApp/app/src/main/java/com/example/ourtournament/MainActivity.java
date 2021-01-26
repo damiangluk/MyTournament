@@ -97,7 +97,6 @@ public class MainActivity<task> extends AppCompatActivity {
         IrAFragment(fixture,false);
     }
 
-    /*
     public void IrATablaGoleadores(View vista)
     {
         CambiarColor();
@@ -105,8 +104,6 @@ public class MainActivity<task> extends AppCompatActivity {
 
         IrAFragment(tablaDeGoleadores,false);
     }
-
-     */
 
     public void IrANoticias(View vista) {
         CambiarColor();

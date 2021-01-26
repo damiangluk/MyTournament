@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.ourtournament.Objetos.Partido;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
 
@@ -48,32 +49,9 @@ public class AdaptadorAdminPartidos extends ArrayAdapter<Partido> {
         TextView Jornada = VistaADevolver.findViewById(R.id.Jornada);
         Button Eliminar = VistaADevolver.findViewById(R.id.Eliminar);
 
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID" + P.IDEquipoLocal + "_Escudo.PNG";
-        Picasso.get().load(Ruta)
-                .into(Foto1, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Foto1.setImageResource(R.drawable.icono_equipo);
-                    }
-
-                });
-        Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID" + P.IDEquipoVisitante + "_Escudo.PNG";
-        Picasso.get().load(Ruta)
-                .into(Foto2, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Foto2.setImageResource(R.drawable.icono_equipo);
-                    }
-
-                });
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoLocal + "_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoVisitante + "_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
 
         if (P.GolesLocal == -1)
         {

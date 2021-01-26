@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
 import com.squareup.picasso.Picasso;
@@ -45,20 +46,8 @@ public class AdaptadorAdminEquipos extends ArrayAdapter<Equipo> {
         Equipo E = getItem(pos);
         final ImageView Foto = VistaADevolver.findViewById(R.id.Foto);
         TextView Nombre = VistaADevolver.findViewById(R.id.Nombre);
-        String Ruta = "http://10.0.2.2:55859/Imagenes/Equipos/ID" + E.IDEquipo + "_Escudo.PNG";
-
-        Picasso.get().load(Ruta)
-                .into(Foto, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-                        Foto.setImageResource(R.drawable.icono_equipo);
-                    }
-
-                });
+        TareaAsincronica Tareas = new TareaAsincronica();
+        Tareas.CargarFoto("Equipos/ID" + E.IDEquipo + "_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
         Nombre.setText(E.Nombre);
 
         return VistaADevolver;
