@@ -27,7 +27,7 @@ public class TareaAsincronica {
     String Ruta1;
     public TareaAsincronica()
     {
-        Ruta1 = "http://10.0.2.2:55859/api/";
+        Ruta1 = "http://http://181.47.112.9/api/";
     }
     public String RealizarTarea(String Ruta2)
     {
