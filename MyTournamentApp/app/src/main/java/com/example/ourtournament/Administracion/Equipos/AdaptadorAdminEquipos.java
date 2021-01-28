@@ -8,17 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Equipo;
 import com.example.ourtournament.Objetos.TareaAsincronica;
-import com.example.ourtournament.Objetos.Torneo;
 import com.example.ourtournament.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 

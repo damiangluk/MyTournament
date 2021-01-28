@@ -174,15 +174,15 @@ VerPerfilTorneo extends Fragment {
 
             final Dialog dialogPersonalizado = new Dialog(Principal);
             dialogPersonalizado.setContentView(R.layout.solicitud_union_torneo);
-            WindowManager.LayoutParams params = dialogPersonalizado.getWindow().getAttributes();
-            params.width = 1000;
-            params.height =  WindowManager.LayoutParams.WRAP_CONTENT;
             EditText Mensaje = dialogPersonalizado.findViewById(R.id.Mensaje);
             Button Enviar = dialogPersonalizado.findViewById(R.id.BTNEnviar);
             Button Cancelar = dialogPersonalizado.findViewById(R.id.BTNCancelar);
             ListView lista = dialogPersonalizado.findViewById(R.id.ListaEquipos);
-            AdaptadorListaEquiposPorTorneo Adaptador2 = new AdaptadorListaEquiposPorTorneo(Principal,R.layout.item_equipos_por_torneo,ArrayEquipos,true,Adaptador.IDEquipo,IdUsuario);
             lista.setAdapter(Adaptador);
+            if (ArrayEquipos.size() > 5)
+            {
+                lista.getLayoutParams().height = 500;
+            }
             dialogPersonalizado.show();
             Enviar.setOnClickListener(new View.OnClickListener() {
                 @Override

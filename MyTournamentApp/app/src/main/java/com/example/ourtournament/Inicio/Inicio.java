@@ -45,7 +45,7 @@ public class Inicio extends Fragment {
     View VistaADevolver;
     Button Noticias,Buscar,SeguirTorneos;
 
-    TextView renglon;
+    TextView renglon,renglon2;
     ImageView Carga;
 
     ListView listanoticias;
@@ -93,18 +93,17 @@ public class Inicio extends Fragment {
     {
         AdminFragments=getFragmentManager();
         Noticias = VistaADevolver.findViewById(R.id.Noticias);
-        listanoticias = VistaADevolver.findViewById(R.id.lista);
         Carga = VistaADevolver.findViewById(R.id.Carga);
         Buscar = VistaADevolver.findViewById(R.id.Buscar);
         Buscador = VistaADevolver.findViewById(R.id.Buscador);
         renglon = VistaADevolver.findViewById(R.id.ren);
+        renglon2 = VistaADevolver.findViewById(R.id.ren2);
+        SeguirTorneos = VistaADevolver.findViewById(R.id.SeguirTorneos);
 
         Noticias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 IDTorneo = P.ObtenerInt("IDTorneo",-1);
-                SeguirTorneos = VistaADevolver.findViewById(R.id.SeguirTorneos);
-
                 IraNoticias();
             }
         });
@@ -118,22 +117,21 @@ public class Inicio extends Fragment {
     }
     public void IraNoticias()
     {
-        listanoticias = VistaADevolver.findViewById(R.id.lista);
+        listanoticias = VistaADevolver.findViewById(R.id.listaInicio);
+        listanoticias.setVisibility(View.GONE);
         Buscador.setVisibility(View.GONE);
         Buscar.setTextColor(Color.rgb(255,255,255));
         Noticias.setTextColor(Color.rgb(60,188,128));
-        Animacion(renglon,"X",-10);
+        renglon2.setVisibility(View.INVISIBLE);renglon.setVisibility(View.VISIBLE);
         if (IDTorneo!= -1)
         {
             Carga.setVisibility(View.VISIBLE);
             Rotacion(Carga);
             SeguirTorneos.setVisibility(View.GONE);
-            listanoticias.setVisibility(View.GONE);
             TraerNoticias Tarea = new TraerNoticias();
             Tarea.execute();
         }else
         {
-            listanoticias.setVisibility(View.GONE);
             Carga.setVisibility(View.GONE);
             SeguirTorneos.setVisibility(View.VISIBLE);
         }
@@ -141,6 +139,8 @@ public class Inicio extends Fragment {
     }
     public void IraTorneos()
     {
+        listatorneos = VistaADevolver.findViewById(R.id.listaInicio);
+        listatorneos.setVisibility(View.GONE);
         Buscador.setVisibility(View.GONE);
         Carga.setVisibility(View.VISIBLE);
         Rotacion(Carga);
@@ -148,8 +148,6 @@ public class Inicio extends Fragment {
         LLenarListaTorneos Tarea = new LLenarListaTorneos();
         Tarea.execute();
 
-        listatorneos = VistaADevolver.findViewById(R.id.lista);
-        listatorneos.setVisibility(View.GONE);
         Noticias.setTextColor(Color.rgb(255,255,255));
         Buscar.setTextColor(Color.rgb(60,188,128));
         Buscador.addTextChangedListener(new TextWatcher()
@@ -158,7 +156,6 @@ public class Inicio extends Fragment {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                listatorneos = VistaADevolver.findViewById(R.id.lista);
                 ListaTorneos.removeAll(ListaTorneos);
                 if(s.length() == 0)
                 {
@@ -171,20 +168,12 @@ public class Inicio extends Fragment {
                 Tarea.execute();
             }
         });
-        Animacion(renglon,"X",540);
-    }
-    public void Animacion(TextView objeto,String Nombre,int value)
-    {
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(objeto,Nombre,value);
-        Animacion.setDuration(300);
-        AnimatorSet SetDeAnimacion = new AnimatorSet();
-        SetDeAnimacion.play(Animacion);
-        SetDeAnimacion.start();
+        renglon2.setVisibility(View.VISIBLE);renglon.setVisibility(View.INVISIBLE);
     }
     public void Rotacion(ImageView carga)
     {
-        ObjectAnimator Animacion = ObjectAnimator.ofFloat(carga,"rotation",0,360);
-        Animacion.setDuration(1200);
+        ObjectAnimator Animacion = ObjectAnimator.ofFloat(carga,"rotation",0,720);
+        Animacion.setDuration(2400);
         AnimatorSet SetDeAnimacion = new AnimatorSet();
         SetDeAnimacion.play(Animacion);
         SetDeAnimacion.start();
@@ -211,8 +200,8 @@ public class Inicio extends Fragment {
             AdaptadorListaTorneos Adaptador = new AdaptadorListaTorneos(Principal, R.layout.item_lista_torneos, lista,P,Principal);
             listatorneos.setVisibility(View.VISIBLE);
             listatorneos.setAdapter(Adaptador);
-            Carga.setVisibility(View.GONE);
             Buscador.setVisibility(View.VISIBLE);
+            Carga.setVisibility(View.GONE);
         }
     }
     private class TraerNoticias extends AsyncTask<Void, Void, ArrayList<Noticia>> {
@@ -224,6 +213,7 @@ public class Inicio extends Fragment {
             String Respuesta = Tarea.RealizarTarea(Ruta);
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
             JsonArray VecNoticias = gson.fromJson(Respuesta, JsonArray.class);
+            Log.d("conexion",String.valueOf(VecNoticias));
 
             for (int i = 0; i < VecNoticias.size(); i++) {
                 JsonElement Elemento = VecNoticias.get(i);

@@ -42,7 +42,7 @@
         android:layout_width="410dp"
         android:layout_height="410dp"
         android:layout_marginTop="8dp"
-        app:srcCompat="@drawable/icono_equipo" />
+        app:srcCompat="@drawable/imagen_error" />
     <TextView
         android:id="@+id/Descripcion"
         android:layout_width="match_parent"
@@ -53,7 +53,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="left"
         android:text="Descripcion"
-        android:textColor="#7A7A7A"
+        android:textColor="#AFAFAF"
         android:textSize="14sp" />
 
     <TextView

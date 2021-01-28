@@ -75,6 +75,7 @@ public class Fixture extends Fragment {
         }else {
             ListView.setVisibility(View.GONE);
             Carga.setVisibility(View.GONE);
+            spinner.setVisibility(View.GONE);
             SeguirTorneos.setVisibility(View.VISIBLE);
             SeguirTorneos.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,26 +154,34 @@ public class Fixture extends Fragment {
         }
         protected void onPostExecute(ArrayList<String> lista)
         {
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.spinner,lista);
-            spinner.setAdapter(adapter);
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    i++;
-                    JornadaElegida = i;
-                    TraerPartidos Tarea = new TraerPartidos();
-                    Tarea.execute();
-                }
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-            if (CambiarJornada)
+            if (lista.size()>0)
             {
-                spinner.setSelection(lista.size()-1,true);
+                spinner.setVisibility(View.VISIBLE);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.spinner,lista);
+                spinner.setAdapter(adapter);
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        i++;
+                        JornadaElegida = i;
+                        TraerPartidos Tarea = new TraerPartidos();
+                        Tarea.execute();
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                if (CambiarJornada)
+                {
+                    spinner.setSelection(lista.size()-1,true);
+                }else
+                {
+                    spinner.setSelection(JornadaElegida-1,true);
+                }
             }else
             {
-                spinner.setSelection(JornadaElegida-1,true);
+                spinner.setVisibility(View.INVISIBLE);
+                Carga.setVisibility(View.INVISIBLE);
             }
         }
     }

@@ -84,13 +84,9 @@ public class CrearCuenta extends Fragment {
                 {
                     Incorrecto.setText("La sintaxis del correo electronico no es correcta");
                     Incorrecto.setVisibility(View.VISIBLE);
-                }else if (false)
-                {
-                    Incorrecto.setText("La fecha de nacimiento ingresada no es valida");
-                    Incorrecto.setVisibility(View.VISIBLE);
                 }else if(contra.length()<6 || contra.length()>20 || !contra.equals(confcontra))
                 {
-                    Incorrecto.setText("La contraseña debe tener entre 6 y 20 caracteres y coincidir con la confirmacion de la misma");
+                    Incorrecto.setText("La contraseña debe tener entre 6 y 20 caracteres y debe coincidir con la confirmacion de la misma");
                     Incorrecto.setVisibility(View.VISIBLE);
                 }else
                 {

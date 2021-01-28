@@ -27,60 +27,72 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/subheader"
         android:layout_width="420dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
         android:background="#212423"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_gravity="center">
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/Noticias"
-            android:layout_width="210dp"
+            android:layout_width="205dp"
             android:layout_height="38dp"
             android:layout_gravity="top"
             android:background="#00FFFFFF"
-            android:text="Noticias"
             android:fontFamily="@font/quino"
+            android:text="Noticias"
             android:textColor="#3CBC80"
             android:textSize="18dp"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/Buscar"
-            android:layout_width="210dp"
+            android:layout_width="205dp"
             android:layout_height="38dp"
             android:layout_gravity="top"
             android:background="#00FFFFFF"
             android:fontFamily="@font/quino"
             android:text="Buscar"
             android:textColor="#FFF"
-            android:textSize="18dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/subsubheader"
-        android:layout_width="420dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/subheader"
-        android:background="#212423"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_gravity="center"
-        tools:ignore="ExtraText">
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/ren"
-            android:layout_width="208dp"
+            android:layout_width="100dp"
             android:layout_height="2dp"
             android:layout_gravity="top"
             android:background="#3CBC80"
-        />
-    </LinearLayout>
+            app:layout_constraintEnd_toEndOf="@+id/Noticias"
+            app:layout_constraintStart_toStartOf="@+id/Noticias"
+            app:layout_constraintTop_toBottomOf="@+id/Noticias" />
+
+        <TextView
+            android:id="@+id/ren2"
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_gravity="top"
+            android:background="#3CBC80"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/Buscar"
+            app:layout_constraintStart_toStartOf="@+id/Buscar"
+            app:layout_constraintTop_toBottomOf="@+id/Buscar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/subsubheader"
+        android:layout_below="@+id/subheader"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -96,34 +108,34 @@
             android:id="@+id/Buscador"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/input"
             android:gravity="center"
             android:hint="Buscar torneos"
-            android:visibility="gone"
             android:textColor="#000"
             android:textColorHint="#787878"
-            android:background="@drawable/input"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/SeguirTorneos"
             android:layout_width="300dp"
             android:layout_height="36dp"
             android:layout_marginTop="20dp"
-            android:text="Ir a seguir torneos"
             android:background="#F3F3F3"
             android:fontFamily="@font/jai"
+            android:text="Ir a seguir torneos"
             android:textSize="18sp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ListView
-            android:id="@+id/lista"
+            android:id="@+id/listaInicio"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
-            android:layout_gravity="center"/>
+            android:layout_marginRight="5dp" />
     </LinearLayout>
 
 </RelativeLayout>

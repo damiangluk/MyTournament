@@ -65,7 +65,7 @@ public class FragmentFotoDePerfil extends Fragment{
         P = Principal.CargarSharedPreferences();
 
         Tarea = new TareaAsincronica();
-        Tarea.CargarFoto("Usuarios/PerfilDefault.JPG",Foto,2);
+        Tarea.CargarFoto("",Foto,2);
         Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +83,7 @@ public class FragmentFotoDePerfil extends Fragment{
         Quitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Tarea.CargarFoto("Usuarios/PerfilDefault.JPG",Foto,2);
+                Tarea.CargarFoto("",Foto,2);
             }
         });
         Confirmar.setOnClickListener(new View.OnClickListener() {
