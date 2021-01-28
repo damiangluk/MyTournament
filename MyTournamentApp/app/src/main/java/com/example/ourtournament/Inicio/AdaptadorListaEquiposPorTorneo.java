@@ -123,7 +123,7 @@ public class AdaptadorListaEquiposPorTorneo extends ArrayAdapter<Equipo> {
         NombreEquipo.setText(E.Nombre);
 
         TareaAsincronica Tarea = new TareaAsincronica();
-        Tarea.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tarea.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,3);
 
         if (!Destacable)
         {

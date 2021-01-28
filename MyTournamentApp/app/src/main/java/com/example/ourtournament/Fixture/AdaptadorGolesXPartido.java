@@ -69,7 +69,7 @@ public class AdaptadorGolesXPartido extends ArrayAdapter<GolesXUsuario>
             }
             Goles.setText(GU.Cantgoles+Palabra);
             TareaAsincronica Tarea = new TareaAsincronica();
-            Tarea.CargarFoto("Usuarios/ID" + GU.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
+            Tarea.CargarFoto("Usuarios/ID" + GU.IdUsuario + "_Perfil.PNG",Foto,2);
 
         }else
         {

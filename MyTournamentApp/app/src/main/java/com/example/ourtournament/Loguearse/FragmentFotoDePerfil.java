@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.ourtournament.MainActivity;
 import com.example.ourtournament.Objetos.Preferencias;
+import com.example.ourtournament.Objetos.TareaAsincronica;
 import com.example.ourtournament.Objetos.Usuario;
 import com.example.ourtournament.R;
 import com.google.gson.Gson;
@@ -49,6 +50,7 @@ public class FragmentFotoDePerfil extends Fragment{
     MainActivity Principal;
     Preferencias P;
     Usuario U;
+    TareaAsincronica Tarea;
     @Override
     public View onCreateView(LayoutInflater inflador, @Nullable ViewGroup GrupoDeLaVista, Bundle savedInstanceState) {
         View VistaADevolver;
@@ -62,7 +64,8 @@ public class FragmentFotoDePerfil extends Fragment{
         Principal = (MainActivity) getActivity();
         P = Principal.CargarSharedPreferences();
 
-        Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
+        Tarea = new TareaAsincronica();
+        Tarea.CargarFoto("Usuarios/PerfilDefault.JPG",Foto,2);
         Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +83,7 @@ public class FragmentFotoDePerfil extends Fragment{
         Quitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Picasso.get().load("http://10.0.2.2:55859/Imagenes/Usuarios/PerfilDefault.JPG").into(Foto);
+                Tarea.CargarFoto("Usuarios/PerfilDefault.JPG",Foto,2);
             }
         });
         Confirmar.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +131,7 @@ public class FragmentFotoDePerfil extends Fragment{
         @Override
         protected Integer doInBackground(Void... voids) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/InsertUsuario";
+                String miURL = "http://181.47.112.9/MyTournament/api/InsertUsuario";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();

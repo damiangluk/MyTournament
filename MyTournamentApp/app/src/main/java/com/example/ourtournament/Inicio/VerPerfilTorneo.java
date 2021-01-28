@@ -315,7 +315,7 @@ VerPerfilTorneo extends Fragment {
             CantNoticias.setText(String.valueOf(Info.get(1)));
             NombreTorneo.setText(T.NombreTorneo);
             TareaAsincronica Tarea = new TareaAsincronica();
-            Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
+            Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,1);
         }
     }
 
@@ -324,7 +324,7 @@ VerPerfilTorneo extends Fragment {
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/InsertTorneosSeguidos";
+                String miURL = "http://181.47.112.9/MyTournament/api/InsertTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
@@ -363,7 +363,7 @@ VerPerfilTorneo extends Fragment {
         @Override
         protected Boolean doInBackground(Integer... IDS) {
             try {
-                String miURL = "http://10.0.2.2:55859/api/DeleteTorneosSeguidos";
+                String miURL = "http://181.47.112.9/MyTournament/api/DeleteTorneosSeguidos";
                 Log.d("conexion", "estoy accediendo a la ruta " + miURL);
                 URL miRuta = new URL(miURL);
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();

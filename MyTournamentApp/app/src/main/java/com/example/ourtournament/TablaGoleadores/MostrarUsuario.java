@@ -101,7 +101,7 @@ public class MostrarUsuario extends Fragment {
             Nombre.setText("Nombre: "+G.NombreUsuario1);
             GolesEnTorneo.setText("Goles en torneo: "+U.GolesEnTorneo);
             TareaAsincronica Tarea = new TareaAsincronica();
-            Tarea.CargarFoto("Usuarios/ID" + U.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
+            Tarea.CargarFoto("Usuarios/ID" + U.IdUsuario + "_Perfil.PNG",Foto,2);
         }
     }
 

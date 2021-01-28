@@ -53,7 +53,7 @@ public class AdaptadorListaEspera extends ArrayAdapter<ListaEspera> {
 
         final ListaEspera LE = getItem(pos);
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Usuarios/ID" + LE.IdUsuario + "_Perfil.PNG",Foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
+        Tareas.CargarFoto("Usuarios/ID" + LE.IdUsuario + "_Perfil.PNG",Foto,2);
         Nombre.setText(LE.NombreUsuario);
         NombreEquipo.setText(LE.NombreEquipo);
         Aceptar.setOnClickListener(new View.OnClickListener() {

@@ -59,7 +59,7 @@ public class MostrarEquipo extends Fragment {
         GolesAFavor.setText(String.valueOf(E.GolesAFavor));
         GolesEnContra.setText(String.valueOf(E.GolesEnContra));
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tareas.CargarFoto("Equipos/ID"+E.IDEquipo+"_Escudo.PNG",Foto,3);
 
         Volver.setOnClickListener(new View.OnClickListener() {
             @Override

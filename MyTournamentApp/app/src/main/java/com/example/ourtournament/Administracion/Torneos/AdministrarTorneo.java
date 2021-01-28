@@ -63,7 +63,7 @@ public class AdministrarTorneo extends Fragment{
         }
 
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Torneos/ID"+T.IDTorneo+"_Perfil.JPG",Perfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
+        Tareas.CargarFoto("Torneos/ID"+T.IDTorneo+"_Perfil.JPG",Perfil,2);
 
         NombreTorneo.setText(T.NombreTorneo);
         Equipos.setOnClickListener(new View.OnClickListener() {

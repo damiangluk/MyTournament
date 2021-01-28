@@ -50,8 +50,8 @@ public class AdaptadorAdminPartidos extends ArrayAdapter<Partido> {
         Button Eliminar = VistaADevolver.findViewById(R.id.Eliminar);
 
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoLocal + "_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
-        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoVisitante + "_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoLocal + "_Escudo.PNG",Foto1,3);
+        Tareas.CargarFoto("Equipos/ID" + P.IDEquipoVisitante + "_Escudo.PNG",Foto2,3);
 
         if (P.GolesLocal == -1)
         {

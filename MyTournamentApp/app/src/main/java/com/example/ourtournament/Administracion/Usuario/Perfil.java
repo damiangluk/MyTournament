@@ -173,7 +173,7 @@ public class Perfil extends Fragment {
         protected void onPostExecute(final ArrayList<Torneo> ArrayTorneos)
         {
             int Cantidad=ArrayTorneos.size();
-            if (Cantidad<1 || Usu.IdUsuario<4)
+            if (Cantidad<1 || Usu.IdUsuario>3)
             {
                 TorneosSeguidos.setVisibility(View.GONE);
                 TXT2.setVisibility(View.GONE);
@@ -186,7 +186,6 @@ public class Perfil extends Fragment {
                 TorneosSeguidos.setAdapter(Adaptador);
             }
 
-            Log.d("conexion",String.valueOf(IDTorneos.size()));
             if (IDTorneos.size()<2)
             {
                 Torneos.setVisibility(View.GONE);
@@ -229,7 +228,7 @@ public class Perfil extends Fragment {
         {
 
             int Cantidad=ArrayTorneos.size();
-            if (Cantidad<1 || Usu.IdUsuario<4)
+            if (Cantidad<1 || Usu.IdUsuario>3)
             {
                 TorneosParticipados.setVisibility(View.GONE);
                 TXT1.setVisibility(View.GONE);
@@ -276,7 +275,7 @@ public class Perfil extends Fragment {
             Tarea1.execute();
             TraerTorneosSeguidosPorUsuario Tarea2 = new TraerTorneosSeguidosPorUsuario();
             Tarea2.execute();
-            Tarea.CargarFoto("Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG",foto,"http://181.47.112.9/MyTournament/Imagenes/Usuarios/PerfilDefault.JPG");
+            Tarea.CargarFoto("Usuarios/ID" + Usu.IdUsuario + "_Perfil.PNG",foto,2);
             if (Usu.IDTipo<4)
             {
                 Volver.setVisibility(View.GONE);

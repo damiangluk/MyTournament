@@ -74,7 +74,7 @@ public class AdaptadorTorneos extends ArrayAdapter<Torneo> {
         final Torneo T = getItem(pos);
 
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
+        Tareas.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,1);
         NombreTorneo.setText(T.NombreTorneo);
 
         if (_AccesoAdmin)

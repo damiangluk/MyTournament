@@ -122,7 +122,7 @@ public class AdaptadorListaTorneos extends ArrayAdapter<TorneoParticipacion> {
         }
 
         TareaAsincronica Tarea = new TareaAsincronica();
-        Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,"https://images.emojiterra.com/mozilla/512px/1f3c6.png");
+        Tarea.CargarFoto("Torneos/ID" + T.IDTorneo + "_Perfil.JPG",FotoPerfil,1);
         NombreTorneo.setText(T.NombreTorneo);
 
         Seguir.setOnClickListener(new View.OnClickListener() {

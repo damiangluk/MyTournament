@@ -60,7 +60,7 @@ public class TareaAsincronica {
         return Respuesta;
     }
 
-    public void CargarFoto(final String Ruta, final ImageView Foto, final String RutaError)
+    public void CargarFoto(final String Ruta, final ImageView Foto, final int Num)
     {
         String URL = RutaFoto+Ruta;
         Picasso.get().load(URL)
@@ -71,9 +71,20 @@ public class TareaAsincronica {
 
                     @Override
                     public void onError(Exception e) {
-                        if (RutaError != "")
+                        switch (Num)
                         {
-                            Picasso.get().load(RutaError).into(Foto);
+                            case 1:
+                                Foto.setImageResource(R.drawable.icono_torneo);
+                                break;
+                            case 2:
+                                Foto.setImageResource(R.drawable.icono_persona);
+                                break;
+                            case 3:
+                                Foto.setImageResource(R.drawable.icono_equipo);
+                                break;
+                            case 4:
+                                Foto.setImageResource(R.drawable.imagen_error);
+                                break;
                         }
                     }
                 });

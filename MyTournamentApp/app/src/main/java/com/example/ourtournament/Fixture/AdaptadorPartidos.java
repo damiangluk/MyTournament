@@ -62,8 +62,8 @@ public class AdaptadorPartidos extends ArrayAdapter<Partido>
 
         Partido P = getItem(pos);
         TareaAsincronica Tarea = new TareaAsincronica();
-        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoLocal+"_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
-        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoVisitante+"_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoLocal+"_Escudo.PNG",Foto1,3);
+        Tarea.CargarFoto("Equipos/ID"+P.IDEquipoVisitante+"_Escudo.PNG",Foto2,3);
         if(pos == 0)
         {
             renglon.setVisibility(View.GONE);

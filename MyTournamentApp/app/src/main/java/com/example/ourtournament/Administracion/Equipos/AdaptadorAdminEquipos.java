@@ -47,7 +47,7 @@ public class AdaptadorAdminEquipos extends ArrayAdapter<Equipo> {
         final ImageView Foto = VistaADevolver.findViewById(R.id.Foto);
         TextView Nombre = VistaADevolver.findViewById(R.id.Nombre);
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Equipos/ID" + E.IDEquipo + "_Escudo.PNG",Foto,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tareas.CargarFoto("Equipos/ID" + E.IDEquipo + "_Escudo.PNG",Foto,3);
         Nombre.setText(E.Nombre);
 
         return VistaADevolver;

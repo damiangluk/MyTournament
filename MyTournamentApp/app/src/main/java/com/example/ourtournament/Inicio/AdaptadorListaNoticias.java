@@ -60,7 +60,7 @@ public class AdaptadorListaNoticias extends ArrayAdapter<Noticia>
         Fecha.setText(Not.Fecha.toString());
         Descripcion.setText(Not.Descripcion);
         TareaAsincronica Tarea = new TareaAsincronica();
-        Tarea.CargarFoto("Noticias/ID"+Not.IDNoticia+"_1.JPG",imageView,"");
+        Tarea.CargarFoto("Noticias/ID"+Not.IDNoticia+"_1.JPG",imageView,4);
         return  VistaADevolver;
     }
 }

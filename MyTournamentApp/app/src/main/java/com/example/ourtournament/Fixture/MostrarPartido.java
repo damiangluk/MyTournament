@@ -76,8 +76,8 @@ public class MostrarPartido extends Fragment {
             NombreE2.setText(Par.NombreEquipoVisitante);
         }
 
-        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG",Foto1,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
-        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG",Foto2,"https://p.kindpng.com/picc/s/154-1546024_ehr-my-team-team-png-icon-transparent-png.png");
+        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoLocal+"_Escudo.PNG",Foto1,3);
+        Tarea.CargarFoto("Equipos/ID"+Par.IDEquipoVisitante+"_Escudo.PNG",Foto2,3);
 
         Jorn.setText("Jornada "+Par.Jornada);
         E1.setText(Par.NombreEquipoLocal);

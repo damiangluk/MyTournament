@@ -42,7 +42,7 @@ public class AdaptadorAdminNoticias extends ArrayAdapter<Noticia> {
         final ImageView Foto = VistaADevolver.findViewById(R.id.Foto);
         TextView Nombre = VistaADevolver.findViewById(R.id.Nombre);
         TareaAsincronica Tareas = new TareaAsincronica();
-        Tareas.CargarFoto("Noticias/ID" + N.IDNoticia + "_1.JPG",Foto,"");
+        Tareas.CargarFoto("Noticias/ID" + N.IDNoticia + "_1.JPG",Foto,4);
         Nombre.setText(N.Titulo);
 
         return VistaADevolver;
