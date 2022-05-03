@@ -30,8 +30,8 @@ public class TareaAsincronica {
     String RutaFoto;
     public TareaAsincronica()
     {
-        Ruta1 = "http://181.47.112.9/MyTournament/api/";
-        RutaFoto = "http://181.47.112.9/MyTournament/Imagenes/";
+        Ruta1 = "http://10.0.2.2:55859/api/";
+        RutaFoto = "http://10.0.2.2:55859/api/Imagenes/";
     }
     public String RealizarTarea(String Ruta2)
     {

@@ -212,7 +212,6 @@ C:\Users\damig\Documents\Archivos Personales\MYTOURNAMENT\MyTournamentAPI\OurTou
 C:\Users\damig\Documents\Archivos Personales\MYTOURNAMENT\MyTournamentAPI\OurTournamentAPI\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\damig\Documents\Archivos Personales\MYTOURNAMENT\MyTournamentAPI\OurTournamentAPI\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\damig\Documents\Archivos Personales\MYTOURNAMENT\MyTournamentAPI\OurTournamentAPI\obj\Debug\MyTournamentAPI.csproj.CopyComplete
-C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\MyTournamentAPI.csprojAssemblyReference.cache
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\MyTournamentAPI.csproj.CoreCompileInputs.cache
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\OurTournamentAPI.dll
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\OurTournamentAPI.pdb
@@ -319,3 +318,4 @@ C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\bin\es\Sy
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\MyTournamentAPI.csproj.CopyComplete
+C:\Users\damig\Documents\MyTournament\MyTournamentAPI\OurTournamentAPI\obj\Debug\MyTournamentAPI.csproj.AssemblyReference.cache

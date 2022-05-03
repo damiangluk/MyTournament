@@ -12,9 +12,9 @@ namespace OurTournamentAPI
         private SqlConnection con;
         private SqlConnection Conectar()
         {
-            //string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=MyTournament;Trusted_Connection=True;";
+            string constring = @"Server=LAPTOP-4HDMLNB7\SQLEXPRESS;Database=MyTournament;Trusted_Connection=True;";
             //string constring = @"Server=WIN-2DMDQ5MAP65;Database=MyTournament;Trusted_Connection=True;";
-            string constring = ConfigurationManager.ConnectionStrings["myTournamentConn"].ConnectionString;
+            //string constring = ConfigurationManager.ConnectionStrings["myTournamentConn"].ConnectionString;
             SqlConnection a = new SqlConnection(constring);
             a.Open();
             return a;
