@@ -1,12 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.example.ourtournament"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -36,4 +41,15 @@ dependencies {
     implementation 'com.android.support:design:25.3.1'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
 
+}
+
+configurations.all {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == 'com.android') {
+                useModule("com.android.tools.build:gradle:${requested.version}")
+                useGradleVersion('7.4.2')
+            }
+        }
+    }
 }

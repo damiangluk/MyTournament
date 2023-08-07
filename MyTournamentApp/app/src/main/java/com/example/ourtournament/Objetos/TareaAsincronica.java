@@ -30,8 +30,9 @@ public class TareaAsincronica {
     String RutaFoto;
     public TareaAsincronica()
     {
-        Ruta1 = "http://10.0.2.2:55859/api/";
-        RutaFoto = "http://10.0.2.2:55859/api/Imagenes/";
+        String baseUrl = String.valueOf(R.string.url);
+        Ruta1 = baseUrl + "/api/";
+        RutaFoto = baseUrl + "/api/Imagenes/";
     }
     public String RealizarTarea(String Ruta2)
     {
